@@ -1,0 +1,11 @@
+{
+  "name": "Anime Spell",
+  "icon": "minecraft:pink_dye",
+  "category": "arcane-artistry:advanced_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)←↓→$(br2)$(bold)Spell type:$()$(br)Multi Spell$(br2)$(bold)Description:$()$(br)Shoots a wall of fireballs towards a target."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Basic Staff Crafting",
+  "icon": "minecraft:crafting_table",
+  "category": "arcane-artistry:basic_staff_spells",
+  "sortnum": -1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crafting a $(bold)basic staff$() requires collecting some of this magical mineral called $(bold)lapis lazuli$(). Additionally, you need to strengthen your $(bold)crooked staff$() with some more wood from the $(bold)azure tree$() as well as a $(bold)diamond$() to channel the energy of the lapis. Place the items in the crafting grid as seen on the other page."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arcane-artistry:basic_staff"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Poison Spell",
+  "icon": "minecraft:slime_ball",
+  "category": "arcane-artistry:basic_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)←↓↓$(br2)$(bold)Spell type:$()$(br)Projectile Spell$(br2)$(bold)Description:$()$(br)Poisons the target."
+    }
+  ]
+}

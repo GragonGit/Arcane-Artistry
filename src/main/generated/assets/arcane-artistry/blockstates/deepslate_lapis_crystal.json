@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "east=false,north=false,up=false": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "x": 180,
+      "y": 0
+    },
+    "east=false,north=false,up=true": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "y": 270
+    },
+    "east=false,north=true,up=false": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "x": 180,
+      "y": 90
+    },
+    "east=false,north=true,up=true": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "y": 0
+    },
+    "east=true,north=false,up=false": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "x": 180,
+      "y": 270
+    },
+    "east=true,north=false,up=true": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "y": 180
+    },
+    "east=true,north=true,up=false": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "x": 180,
+      "y": 180
+    },
+    "east=true,north=true,up=true": {
+      "model": "arcane-artistry:block/deepslate_lapis_crystal",
+      "y": 90
+    }
+  }
+}

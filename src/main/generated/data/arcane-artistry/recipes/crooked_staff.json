@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "arcane-artistry:oddly_shaped_stick"
+    }
+  },
+  "pattern": [
+    "  S",
+    " S ",
+    "S  "
+  ],
+  "result": {
+    "item": "arcane-artistry:crooked_staff"
+  }
+}

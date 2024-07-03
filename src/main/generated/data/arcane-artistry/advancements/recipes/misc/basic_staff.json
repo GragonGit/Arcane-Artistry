@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crooked_staff": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "arcane-artistry:crooked_staff"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "arcane-artistry:basic_staff"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crooked_staff"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "arcane-artistry:basic_staff"
+    ]
+  }
+}

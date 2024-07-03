@@ -1,0 +1,20 @@
+{
+  "block.arcane-artistry.azure_leaves": "Azure Leaves",
+  "block.arcane-artistry.azure_log": "Azure Log",
+  "block.arcane-artistry.azure_planks": "Azure Planks",
+  "block.arcane-artistry.azure_sapling": "Azure Sapling",
+  "block.arcane-artistry.azure_wood": "Azure Wood",
+  "block.arcane-artistry.deepslate_lapis_crystal": "Deepslate Lapis Crystal",
+  "block.arcane-artistry.shimmering_azure_leaves": "Shimmering Azure Leaves",
+  "block.arcane-artistry.stone_lapis_crystal": "Stone Lapis Crystal",
+  "block.arcane-artistry.stripped_azure_log": "Stripped Azure Log",
+  "block.arcane-artistry.stripped_azure_wood": "Stripped Azure Wood",
+  "item.arcane-artistry.advanced_staff": "Advanced Staff",
+  "item.arcane-artistry.basic_staff": "Basic Staff",
+  "item.arcane-artistry.crooked_staff": "Crooked Staff",
+  "item.arcane-artistry.debug_staff": "Debug Staff",
+  "item.arcane-artistry.lapis_crystal": "Lapis Crystal",
+  "item.arcane-artistry.oddly_shaped_stick": "Oddly Shaped Stick",
+  "item.arcane-artistry.spell_glossary": "Spell Glossary",
+  "itemgroup.arcane_artistry_group": "Arcane Artistry"
+}

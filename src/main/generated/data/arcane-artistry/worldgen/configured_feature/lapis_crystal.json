@@ -1,0 +1,44 @@
+{
+  "type": "arcane-artistry:lapis_crystal",
+  "config": {
+    "targets": [
+      {
+        "state": {
+          "Name": "arcane-artistry:stone_lapis_crystal",
+          "Properties": {
+            "east": "true",
+            "north": "true",
+            "up": "true"
+          }
+        },
+        "target": {
+          "block_state": {
+            "Name": "minecraft:stone"
+          },
+          "predicate_type": "minecraft:random_blockstate_match",
+          "probability": 1.0
+        }
+      },
+      {
+        "state": {
+          "Name": "arcane-artistry:deepslate_lapis_crystal",
+          "Properties": {
+            "east": "true",
+            "north": "true",
+            "up": "true"
+          }
+        },
+        "target": {
+          "block_state": {
+            "Name": "minecraft:deepslate",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "predicate_type": "minecraft:random_blockstate_match",
+          "probability": 1.0
+        }
+      }
+    ]
+  }
+}

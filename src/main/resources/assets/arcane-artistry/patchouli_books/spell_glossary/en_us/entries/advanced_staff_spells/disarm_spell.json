@@ -1,0 +1,11 @@
+{
+  "name": "Disarm Spell",
+  "icon": "minecraft:barrier",
+  "category": "arcane-artistry:advanced_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)←→↑↑↓$(br2)$(bold)Spell type:$()$(br)Projectile Spell$(br2)$(bold)Description:$()$(br)Lets the target drop the items in both their off hand and main hand."
+    }
+  ]
+}

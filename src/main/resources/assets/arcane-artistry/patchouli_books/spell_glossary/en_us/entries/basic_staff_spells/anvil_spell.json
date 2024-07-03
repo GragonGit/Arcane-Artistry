@@ -1,0 +1,11 @@
+{
+  "name": "Anvil Spell",
+  "icon": "minecraft:anvil",
+  "category": "arcane-artistry:basic_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↓↓↓$(br2)$(bold)Spell type:$()$(br)Projectile Spell$(br2)$(bold)Description:$()$(br)Summons an anvil at the target block or a few blocks above an entity."
+    }
+  ]
+}

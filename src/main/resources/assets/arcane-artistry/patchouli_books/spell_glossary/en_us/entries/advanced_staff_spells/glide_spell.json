@@ -1,0 +1,11 @@
+{
+  "name": "Glide Spell",
+  "icon": "minecraft:elytra",
+  "category": "arcane-artistry:advanced_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↑↑←→↑$(br2)$(bold)Spell type:$()$(br)Spell$(br2)$(bold)Description:$()$(br)Allows the artificer to glide as if they were using an elytra."
+    }
+  ]
+}

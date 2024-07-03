@@ -1,0 +1,6 @@
+{
+  "parent": "arcane-artistry:block/lapis_crystal",
+  "textures": {
+    "all": "minecraft:block/deepslate"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Basic Staff Spells",
+  "description": "These are all spells available to the basic staff. Note that the basic staff can also cast spells from the crooked staff spell list.",
+  "icon": "arcane-artistry:basic_staff",
+  "sortnum": 1
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Crooked Staff Crafting",
+  "icon": "minecraft:crafting_table",
+  "category": "arcane-artistry:crooked_staff_spells",
+  "sortnum": -1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crafting a $(bold)crooked staff$() is quite simple. Gather some $(bold)oddly shaped sticks$() from the shimmering leaves of the azure tree and place them in the crafting grid as seen on the other page."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arcane-artistry:crooked_staff"
+    }
+  ]
+}

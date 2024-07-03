@@ -1,0 +1,11 @@
+{
+  "name": "Fireball Spell",
+  "icon": "minecraft:fire_charge",
+  "category": "arcane-artistry:basic_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↑↓←→$(br2)$(bold)Spell type:$()$(br)Projectile Spell$(br2)$(bold)Description:$()$(br)Shoots a fireball towards the target. This fireball does little environment damage with its explosion. It's a fireball it doesn't summon a tnt explosion at its location or something."
+    }
+  ]
+}

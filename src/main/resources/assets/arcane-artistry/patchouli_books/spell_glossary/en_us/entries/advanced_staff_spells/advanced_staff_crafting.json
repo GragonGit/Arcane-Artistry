@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Staff Crafting",
+  "icon": "minecraft:crafting_table",
+  "category": "arcane-artistry:advanced_staff_spells",
+  "sortnum": -1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crafting a $(bold)advanced staff$() requires the $(bold)basic staff$() to be made beforehand. Now add more $(bold)lapis lazuli$() in form of blocks and rare $(bold)lapis crystals$() to enhance the magical capabilities of the staff. Moreover, strengthen the handle using $(bold)obsidian$() as well as a $(bold)blaze rod$() to ensure your staff will not break. Place the items in the crafting grid as seen on the other page."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arcane-artistry:advanced_staff"
+    }
+  ]
+}
