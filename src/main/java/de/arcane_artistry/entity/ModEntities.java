@@ -1,7 +1,6 @@
 package de.arcane_artistry.entity;
 
 import de.arcane_artistry.ArcaneArtistry;
-import de.arcane_artistry.entity.custom.BallProjectileEntity;
 import de.arcane_artistry.entity.custom.SpellProjectileEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
@@ -14,9 +13,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModEntities {
-  public static final EntityType<BallProjectileEntity> BALL_PROJECTILE_ENTITY_TYPE = registerEntityType(
-      "ball_projectile", SpawnGroup.MISC, BallProjectileEntity::new, 0.75f, 0.75f);
-
   public static final EntityType<SpellProjectileEntity> SPELL_PROJECTILE_ENTITY_TYPE = registerEntityType(
       "spell_projectile", SpawnGroup.MISC, SpellProjectileEntity::new, 0.25f, 0.25f);
 
