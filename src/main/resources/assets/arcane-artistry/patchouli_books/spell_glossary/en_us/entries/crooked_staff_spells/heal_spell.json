@@ -1,0 +1,11 @@
+{
+  "name": "Heal Spell",
+  "icon": "minecraft:golden_apple",
+  "category": "arcane-artistry:crooked_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)←→$(br2)$(bold)Spell type:$()$(br)Spell$(br2)$(bold)Description:$()$(br)Heals the artificer by 1 heart."
+    }
+  ]
+}

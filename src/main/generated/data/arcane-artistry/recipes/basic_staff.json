@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "arcane-artistry:azure_logs"
+    },
+    "C": {
+      "item": "arcane-artistry:crooked_staff"
+    },
+    "D": {
+      "tag": "c:diamonds"
+    },
+    "L": {
+      "tag": "c:lapis"
+    }
+  },
+  "pattern": [
+    " LD",
+    "LCL",
+    "AL "
+  ],
+  "result": {
+    "item": "arcane-artistry:basic_staff"
+  }
+}

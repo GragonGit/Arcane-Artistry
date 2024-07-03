@@ -1,0 +1,6 @@
+{
+  "name": "Advanced Staff Spells",
+  "description": "These are all spells available to the advanced staff. Note that the advanced staff can also cast spells from the basic staff spell list.",
+  "icon": "arcane-artistry:advanced_staff",
+  "sortnum": 2
+}

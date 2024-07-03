@@ -1,0 +1,11 @@
+{
+  "name": "Chat Spell",
+  "icon": "minecraft:writable_book",
+  "category": "arcane-artistry:crooked_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↓$(br2)$(bold)Spell type:$()$(br)Spell$(br2)$(bold)Description:$()$(br)Sends a beautiful text message in chat."
+    }
+  ]
+}

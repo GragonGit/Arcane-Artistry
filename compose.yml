@@ -1,0 +1,33 @@
+services:
+  arcane-artistry:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+      - "25565:25565"
+    container_name: Arcane-Artistry-Server
+    environment:
+      VERSION: "1.20.4"
+      EULA: "TRUE"
+      TYPE: "FABRIC"
+      MODS: |
+        https://cdn.modrinth.com/data/P7dR8mSH/versions/htRy7kbI/fabric-api-0.96.11%2B1.20.4.jar
+        https://git.it.hs-heilbronn.de/api/v4/projects/6094/packages/generic/arcane-artistry/0.0.1/arcane-artistry-0.0.1.jar
+        https://cdn.modrinth.com/data/nU0bVIaL/versions/RRjoMz5N/Patchouli-1.20.4-85-FABRIC.jar
+      MOTD: "                \u00A76\u00A7kA\u00A7r\u00A7f\u00A7lArcane Artistry\u00A76\u00A7kA\u00A7r\n                     \u00A7f\u00A7oTest Server"
+      MAX_MEMORY: 4G
+      MODE: "CREATIVE"
+      FORCE_GAMEMODE: "TRUE"
+      ICON: "https://git.it.hs-heilbronn.de/api/v4/projects/6094/packages/generic/arcane-artistry/icons/icon.png"
+      MAX_PLAYERS: 3
+      ONLINE_MODE: "FALSE"
+      ENABLE_COMMAND_BLOCK: "TRUE"
+      SPAWN_PROTECTION: 0
+      ALLOW_FLIGHT: "TRUE"
+      OPS: |
+        Lukas
+        Tristan
+        Julian
+    volumes:
+      - /var/lib/docker/volumes/arcaneartistry/_data:/data

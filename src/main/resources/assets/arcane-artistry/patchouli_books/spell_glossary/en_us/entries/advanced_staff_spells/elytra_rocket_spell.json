@@ -1,0 +1,11 @@
+{
+  "name": "Elytra Rocket Spell",
+  "icon": "minecraft:firework_rocket",
+  "category": "arcane-artistry:advanced_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↓↓↑$(br2)$(bold)Spell type:$()$(br)Spell$(br2)$(bold)Description:$()$(br)Ignites a rocket to propel the artificer forwards when gliding with an elytra or similar methods."
+    }
+  ]
+}

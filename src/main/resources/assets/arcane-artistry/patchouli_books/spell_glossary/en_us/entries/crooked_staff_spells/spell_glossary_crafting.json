@@ -1,0 +1,16 @@
+{
+  "name": "Spell Glossary Crafting",
+  "icon": "arcane-artistry:spell_glossary",
+  "category": "arcane-artistry:crooked_staff_spells",
+  "sortnum": -2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crafting a $(bold)spell glossary$() requires a $(bold)book$() and some $(bold)lapis lazuli$(). The lapis gems will somehow infuse the book with its magical power which generates the content of this book. We do not know how this works either."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arcane-artistry:spell_glossary"
+    }
+  ]
+}

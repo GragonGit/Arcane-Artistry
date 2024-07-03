@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "C": {
+      "item": "arcane-artistry:lapis_crystal"
+    },
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "arcane-artistry:basic_staff"
+    }
+  },
+  "pattern": [
+    "LCC",
+    "OSC",
+    "BOL"
+  ],
+  "result": {
+    "item": "arcane-artistry:advanced_staff"
+  }
+}

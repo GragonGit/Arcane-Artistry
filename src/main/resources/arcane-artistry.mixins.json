@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "de.arcane_artistry.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [],
+  "client": [
+    "MouseMixin",
+    "ItemRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "arcane-artistry",
+  "version": "${version}",
+  "name": "Arcane Artistry",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/arcane-artistry/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.arcane_artistry.ArcaneArtistry"
+    ],
+    "client": [
+      "de.arcane_artistry.ArcaneArtistryClient"
+    ],
+    "fabric-datagen": [
+      "de.arcane_artistry.datagen.ModDataGenerator"
+    ]
+  },
+  "mixins": [
+    "arcane-artistry.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.9",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

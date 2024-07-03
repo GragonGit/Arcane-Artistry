@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "loot": [
+      "arcane-artistry:spell_glossary_on_first_join"
+    ]
+  }
+}

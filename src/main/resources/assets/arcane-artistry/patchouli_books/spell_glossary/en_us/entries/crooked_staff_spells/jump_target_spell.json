@@ -1,0 +1,11 @@
+{
+  "name": "Jump Target Spell",
+  "icon": "minecraft:feather",
+  "category": "arcane-artistry:crooked_staff_spells",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Pattern:$()$(br)↑↑↑$(br2)$(bold)Spell type:$()$(br)Projectile Spell$(br2)$(bold)Description:$()$(br)Launches the target in the air."
+    }
+  ]
+}
