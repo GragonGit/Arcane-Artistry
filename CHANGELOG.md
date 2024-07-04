@@ -2,7 +2,7 @@
 The Arcane Artistry Changelog. We use Epoch-Based Versioning where:
 - `X` is for major releases
 - `Y` is for new features
-- `Z` is for bug fixes and repository changes
+- `Z` is for bug fixes, repository changes and code maintenance
 
 ## 0.1.0
 Arcane Artistry has transitioned to a new repository. 🎉
