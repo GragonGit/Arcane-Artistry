@@ -7,5 +7,9 @@ assignees: ''
 
 ---
 
+**Checklist**
+- [ ] Version updated
+- [ ] Changelog updated
+
 **Description**
 Describe the purpose of the issue.
