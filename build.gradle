@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
+  id "com.github.ben-manes.versions" version "${gradle_update_version}"
 }
 
 version = project.mod_version
