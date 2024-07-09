@@ -4,7 +4,14 @@ The Arcane Artistry Changelog. We use Epoch-Based Versioning where:
 - `Y` is for major changes
 - `Z` is for bug fixes and minor changes
 
-## 0.1.0
+## 0.1.1
+Updated some dependencies.
+
+### Dependencies
+- Fabric-loader 0.15.9 -> 0.15.11
+- Fabric-version 0.96.11+1.20.4 -> 0.97.1+1.20.4
+
+## 0.1.0 - Repository Migration
 Arcane Artistry has transitioned to a new repository. 🎉
 
 Additionally, some minor project setup commits occurred before adding the changelog.
