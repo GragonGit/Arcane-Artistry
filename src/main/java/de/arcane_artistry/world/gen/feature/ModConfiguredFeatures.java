@@ -24,11 +24,9 @@ public class ModConfiguredFeatures {
 
     register(context, LAPIS_CRYSTAL_KEY, ModFeatures.LAPIS_CRYSTAL,
         new EmeraldOreFeatureConfig(ImmutableList.of(
-            OreFeatureConfig.createTarget(
-                new RandomBlockStateMatchRuleTest(Blocks.STONE.getDefaultState(), 1F),
+            OreFeatureConfig.createTarget(new RandomBlockStateMatchRuleTest(Blocks.STONE.getDefaultState(), 1F),
                 ModBlocks.STONE_LAPIS_CRYSTAL.getDefaultState()),
-            OreFeatureConfig.createTarget(
-                new RandomBlockStateMatchRuleTest(Blocks.DEEPSLATE.getDefaultState(), 1F),
+            OreFeatureConfig.createTarget(new RandomBlockStateMatchRuleTest(Blocks.DEEPSLATE.getDefaultState(), 1F),
                 ModBlocks.DEEPSLATE_LAPIS_CRYSTAL.getDefaultState()))));
   }
 
@@ -36,11 +34,8 @@ public class ModConfiguredFeatures {
     return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, ArcaneArtistry.newIdentifier(name));
   }
 
-  private static <C extends FeatureConfig, F extends Feature<C>> void register(
-      Registerable<ConfiguredFeature<?, ?>> context,
-      RegistryKey<ConfiguredFeature<?, ?>> key,
-      F feature,
-      C configuration) {
+  private static <C extends FeatureConfig, F extends Feature<C>> void register(Registerable<ConfiguredFeature<?, ?>> context,
+      RegistryKey<ConfiguredFeature<?, ?>> key, F feature, C configuration) {
     context.register(key, new ConfiguredFeature<>(feature, configuration));
   }
 }

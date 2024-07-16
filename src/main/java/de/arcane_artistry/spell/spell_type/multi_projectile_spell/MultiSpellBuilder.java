@@ -25,8 +25,7 @@ public class MultiSpellBuilder<BUILDER extends MultiSpellBuilder<BUILDER, SPELL>
   @SuppressWarnings("unchecked")
   public SPELL build() {
     validate();
-    MultiSpell multiSpell = new MultiSpell(pattern, hasNoPattern, List.copyOf(instantSpellEffects),
-        List.copyOf(spells));
+    MultiSpell multiSpell = new MultiSpell(pattern, hasNoPattern, List.copyOf(instantSpellEffects), List.copyOf(spells));
     cleanup();
 
     return (SPELL) multiSpell;

@@ -40,13 +40,12 @@ public class ProjectileSpell extends Spell {
   private DestroyConditional<PlayerEntity> destroyOnPlayerEntity;
 
   public ProjectileSpell(String pattern, double velocity, ParticleEffect particleEffect, boolean isSpellComponent,
-      Vec3d translationOffset, double yaw, double pitch,
-      List<SpellEffect> instantSpellEffects, List<SpellEffect> onCollisionSpellEffects,
-      List<SpellEffect> onBlockHitSpellEffects, List<SpellEffect> onBlockCollisionSpellEffects,
-      List<SpellEffect> onEntityHitSpellEffects, List<SpellEffect> onPlayerCollisionSpellEffects,
-      DestroyConditional<HitResult> destroyOnHitResult, DestroyConditional<BlockHitResult> destroyOnBlockHitResult,
-      DestroyConditional<BlockState> destroyOnBlockState, DestroyConditional<EntityHitResult> destroyOnEntityHitResult,
-      DestroyConditional<PlayerEntity> destroyOnPlayerEntity) {
+      Vec3d translationOffset, double yaw, double pitch, List<SpellEffect> instantSpellEffects,
+      List<SpellEffect> onCollisionSpellEffects, List<SpellEffect> onBlockHitSpellEffects,
+      List<SpellEffect> onBlockCollisionSpellEffects, List<SpellEffect> onEntityHitSpellEffects,
+      List<SpellEffect> onPlayerCollisionSpellEffects, DestroyConditional<HitResult> destroyOnHitResult,
+      DestroyConditional<BlockHitResult> destroyOnBlockHitResult, DestroyConditional<BlockState> destroyOnBlockState,
+      DestroyConditional<EntityHitResult> destroyOnEntityHitResult, DestroyConditional<PlayerEntity> destroyOnPlayerEntity) {
     super(pattern, isSpellComponent, instantSpellEffects);
     this.velocity = velocity;
     this.particleEffect = particleEffect;
@@ -66,8 +65,7 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once on any collision block or entity.
-   * Basically a culmination of onBlockHit and onEntityHit.
+   * Is called once on any collision block or entity. Basically a culmination of onBlockHit and onEntityHit.
    * 
    * @param world The minecraft world
    * @param owner The owner of the projectile
@@ -84,17 +82,15 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once when entering minecraft blocks on a new tick. This means it is called everytime
-   * when shooting through a row of blocks but only once when it hits multiple blocks in the same
-   * tick e.g. a 2x2 area.
+   * Is called once when entering minecraft blocks on a new tick. This means it is called everytime when shooting through a row of
+   * blocks but only once when it hits multiple blocks in the same tick e.g. a 2x2 area.
    * 
    * @param world The minecraft world
    * @param owner The owner of the projectile
    * @param projectile The projectile entity
    * @param blockHitResult The block hit result of the block hit
    */
-  public void onBlockHit(World world, Entity owner, SpellProjectileEntity projectile,
-      BlockHitResult blockHitResult) {
+  public void onBlockHit(World world, Entity owner, SpellProjectileEntity projectile, BlockHitResult blockHitResult) {
     for (SpellEffect spellEffect : onBlockHitSpellEffects) {
       spellEffect.invokeOnBlockHitResult(world, owner, projectile.getPos(), blockHitResult);
     }
@@ -104,8 +100,8 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called when entering any new block. This means unlike onBlockHit it is called for every block
-   * it hits even if it is the same tick e.g. 4 times on a 2x2 area Does NOT ignore air by default.
+   * Is called when entering any new block. This means unlike onBlockHit it is called for every block it hits even if it is the
+   * same tick e.g. 4 times on a 2x2 area Does NOT ignore air by default.
    * 
    * 
    * @param world The minecraft world
@@ -130,8 +126,7 @@ public class ProjectileSpell extends Spell {
    * @param projectile The projectile entity
    * @param entityHitResult The entity hit result of the entity hit
    */
-  public void onEntityHit(World world, Entity owner, SpellProjectileEntity projectile,
-      EntityHitResult entityHitResult) {
+  public void onEntityHit(World world, Entity owner, SpellProjectileEntity projectile, EntityHitResult entityHitResult) {
     for (SpellEffect spellEffect : onEntityHitSpellEffects) {
       spellEffect.invokeOnEntityHitResult(world, owner, projectile.getPos(), entityHitResult);
     }
@@ -148,8 +143,7 @@ public class ProjectileSpell extends Spell {
    * @param projectile The projectile entity
    * @param playerEntity The player entity of the player collision
    */
-  public void onPlayerCollision(World world, Entity owner, SpellProjectileEntity projectile,
-      PlayerEntity playerEntity) {
+  public void onPlayerCollision(World world, Entity owner, SpellProjectileEntity projectile, PlayerEntity playerEntity) {
     for (SpellEffect spellEffect : onPlayerCollisionSpellEffects) {
       spellEffect.invokeOnPlayerEntity(world, owner, projectile.getPos(), playerEntity);
     }
@@ -166,20 +160,14 @@ public class ProjectileSpell extends Spell {
     Vec3d lookRight = lookForward.crossProduct(new Vec3d(0, 1, 0)).normalize();
     Vec3d lookUp = lookRight.crossProduct(lookForward).normalize();
 
-    Vec3d offset = lookRight.multiply(translationOffset.x)
-        .add(lookUp.multiply(translationOffset.y))
+    Vec3d offset = lookRight.multiply(translationOffset.x).add(lookUp.multiply(translationOffset.y))
         .add(lookForward.multiply(translationOffset.z));
 
     Vec3d rotateYaw = rotate(lookForward, lookUp, yaw);
     Vec3d projectileVelocity = rotate(rotateYaw, lookRight.negate(), pitch).multiply(velocity);
 
-    SpellProjectileEntity projectile = new SpellProjectileEntity(
-        ModEntities.SPELL_PROJECTILE_ENTITY_TYPE,
-        world,
-        this,
-        player,
-        player.getPos().add(new Vec3d(0, 1.5, 0)).add(offset),
-        projectileVelocity);
+    SpellProjectileEntity projectile = new SpellProjectileEntity(ModEntities.SPELL_PROJECTILE_ENTITY_TYPE, world, this, player,
+        player.getPos().add(new Vec3d(0, 1.5, 0)).add(offset), projectileVelocity);
 
     if (particleEffect != null) {
       projectile.setHasParticle(true);

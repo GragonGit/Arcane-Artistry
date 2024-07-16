@@ -34,7 +34,6 @@ public class ModEvents {
     ArcaneArtistry.LOGGER.info("Registering Client Events for " + ArcaneArtistry.MOD_ID);
 
     MouseInputCallback.EVENT.register(CastInputHandler::handleMouseDelta);
-    ClientTickEvents.START_CLIENT_TICK
-        .register(client -> CastInputHandler.onPlayerTick(MinecraftClient.getInstance().player));
+    ClientTickEvents.START_CLIENT_TICK.register(client -> CastInputHandler.onPlayerTick(MinecraftClient.getInstance().player));
   }
 }

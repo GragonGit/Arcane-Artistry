@@ -12,8 +12,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public interface CastEndCallback {
-  Event<CastEndCallback> EVENT = EventFactory.createArrayBacked(CastEndCallback.class,
-      (listeners) -> (world, player, hand, staff, spellPattern) -> {
+  Event<CastEndCallback> EVENT =
+      EventFactory.createArrayBacked(CastEndCallback.class, (listeners) -> (world, player, hand, staff, spellPattern) -> {
         for (CastEndCallback listener : listeners) {
           ActionResult result = listener.interact(world, player, hand, staff, spellPattern);
 
@@ -25,6 +25,5 @@ public interface CastEndCallback {
         return ActionResult.PASS;
       });
 
-  ActionResult interact(World world, PlayerEntity player, Hand hand, StaffItem staff,
-      List<SpellPatternElement> spellPattern);
+  ActionResult interact(World world, PlayerEntity player, Hand hand, StaffItem staff, List<SpellPatternElement> spellPattern);
 }

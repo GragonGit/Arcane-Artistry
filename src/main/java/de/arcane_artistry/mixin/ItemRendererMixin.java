@@ -17,16 +17,8 @@ public class ItemRendererMixin {
   private static final double DOWNSCALE_TRANSLATE = 0.001;
 
   @Inject(method = "renderItem", at = @At("HEAD"))
-  private void renderItem(
-      ItemStack stack,
-      ModelTransformationMode renderMode,
-      boolean leftHanded,
-      MatrixStack matrices,
-      VertexConsumerProvider vertexConsumers,
-      int light,
-      int overlay,
-      BakedModel model,
-      CallbackInfo callbackInfo) {
+  private void renderItem(ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices,
+      VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo callbackInfo) {
 
     if (CastInputHandler.isCasting() && renderMode.isFirstPerson()) {
       matrices.translate(CastInputHandler.getCursorX() * DOWNSCALE_TRANSLATE,

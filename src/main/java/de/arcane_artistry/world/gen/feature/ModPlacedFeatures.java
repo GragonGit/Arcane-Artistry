@@ -25,13 +25,10 @@ public class ModPlacedFeatures {
   public static final RegistryKey<PlacedFeature> LAPIS_CRYSTAL_PLACED_KEY = registerKey("lapis_crystal_placed");
 
   public static void bootstrap(Registerable<PlacedFeature> context) {
-    RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = context
-        .getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+    RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
     register(context, AZURE_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.AZURE_KEY),
-        VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-            RarityFilterPlacementModifier.of(64),
-            ModBlocks.AZURE_SAPLING));
+        VegetationPlacedFeatures.treeModifiersWithWouldSurvive(RarityFilterPlacementModifier.of(64), ModBlocks.AZURE_SAPLING));
 
     register(context, LAPIS_CRYSTAL_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.LAPIS_CRYSTAL_KEY),
         modifiersWithCount(50, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-32), YOffset.fixed(32))));
@@ -41,11 +38,8 @@ public class ModPlacedFeatures {
     return RegistryKey.of(RegistryKeys.PLACED_FEATURE, ArcaneArtistry.newIdentifier(name));
   }
 
-  public static void register(
-      Registerable<PlacedFeature> context,
-      RegistryKey<PlacedFeature> key,
-      RegistryEntry<ConfiguredFeature<?, ?>> feature,
-      List<PlacementModifier> modifiers) {
+  public static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key,
+      RegistryEntry<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers) {
     context.register(key, new PlacedFeature(feature, List.copyOf(modifiers)));
   }
 

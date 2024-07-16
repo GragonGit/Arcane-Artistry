@@ -21,15 +21,13 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 public class ModBlocks {
 
   // AZURE TREE
-  public static final Block AZURE_LOG = registerBlockWithItem("azure_log",
-      new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)
-          .mapColor(
-              state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.DIAMOND_BLUE : MapColor.LAPIS_BLUE)));
+  public static final Block AZURE_LOG =
+      registerBlockWithItem("azure_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)
+          .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.DIAMOND_BLUE : MapColor.LAPIS_BLUE)));
 
-  public static final Block STRIPPED_AZURE_LOG = registerBlockWithItem("stripped_azure_log",
-      new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG)
-          .mapColor(
-              state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.DIAMOND_BLUE : MapColor.LAPIS_BLUE)));
+  public static final Block STRIPPED_AZURE_LOG =
+      registerBlockWithItem("stripped_azure_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG)
+          .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.DIAMOND_BLUE : MapColor.LAPIS_BLUE)));
 
   public static final Block AZURE_WOOD = registerBlockWithItem("azure_wood",
       new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).mapColor(MapColor.LAPIS_BLUE)));
@@ -50,12 +48,12 @@ public class ModBlocks {
       new SaplingBlock(ModSaplingGenerators.AZURE, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
 
   // Lapis Crystal
-  public static final Block STONE_LAPIS_CRYSTAL = registerBlockWithItem("stone_lapis_crystal",
-      new LapisCrystalBlock(UniformIntProvider.create(2, 5),
+  public static final Block STONE_LAPIS_CRYSTAL =
+      registerBlockWithItem("stone_lapis_crystal", new LapisCrystalBlock(UniformIntProvider.create(2, 5),
           FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).nonOpaque().ticksRandomly()));
 
-  public static final Block DEEPSLATE_LAPIS_CRYSTAL = registerBlockWithItem("deepslate_lapis_crystal",
-      new LapisCrystalBlock(UniformIntProvider.create(2, 5),
+  public static final Block DEEPSLATE_LAPIS_CRYSTAL =
+      registerBlockWithItem("deepslate_lapis_crystal", new LapisCrystalBlock(UniformIntProvider.create(2, 5),
           FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).nonOpaque().ticksRandomly()));
 
   private static Block registerBlockWithItem(String name, Block block) {
@@ -68,8 +66,7 @@ public class ModBlocks {
   }
 
   private static Item registerBlockItem(String name, Block block) {
-    return Registry.register(Registries.ITEM, ArcaneArtistry.newIdentifier(name),
-        new BlockItem(block, new FabricItemSettings()));
+    return Registry.register(Registries.ITEM, ArcaneArtistry.newIdentifier(name), new BlockItem(block, new FabricItemSettings()));
   }
 
   public static void registerModBlocks() {

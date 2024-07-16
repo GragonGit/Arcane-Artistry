@@ -38,12 +38,9 @@ public class CastInputHandler {
         if (shouldSendPacket) {
           shouldSendPacket = false;
 
-          SpellPatternElement elementToSend = mouseDeltaToSpellPatternElement(
-              CastInputHandler.deltaX,
-              CastInputHandler.deltaY);
+          SpellPatternElement elementToSend = mouseDeltaToSpellPatternElement(CastInputHandler.deltaX, CastInputHandler.deltaY);
           if (elementToSend != null) {
-            ClientPlayNetworking.send(
-                ModNetworkingConstants.SPELL_PATTERN_ELEMENT_PACKET_ID,
+            ClientPlayNetworking.send(ModNetworkingConstants.SPELL_PATTERN_ELEMENT_PACKET_ID,
                 PacketByteBufs.create().writeEnumConstant(elementToSend));
           }
           resetDelta();

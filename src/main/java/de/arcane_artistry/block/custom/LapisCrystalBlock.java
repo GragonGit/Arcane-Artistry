@@ -22,7 +22,7 @@ public class LapisCrystalBlock extends CornerBlock {
   private static final double INFUSE_PARTICLE_DELTA = 0.2;
   private static final int INFUSE_PARTICLE_COUNT = 15;
   private static final double INFUSE_PARTICLE_SPEED = 0;
-  
+
   public LapisCrystalBlock(IntProvider experienceDropped, Settings settings) {
     super(settings);
     this.experienceDropped = experienceDropped;
@@ -31,34 +31,20 @@ public class LapisCrystalBlock extends CornerBlock {
   @Override
   public void randomTick(BlockState state, ServerWorld world, BlockPos blockPos, Random random) {
     BlockPos.iterateRandomly(random, INFUSE_TRIES, blockPos, INFUSE_RADIUS).forEach(pos -> {
-      if (world.getBlockState(pos).isIn(BlockTags.SAPLINGS)
-          && world.getBlockState(pos).getBlock() != ModBlocks.AZURE_SAPLING) {
+      if (world.getBlockState(pos).isIn(BlockTags.SAPLINGS) && world.getBlockState(pos).getBlock() != ModBlocks.AZURE_SAPLING) {
         final float infusePitch = 0.8F + random.nextFloat() * 0.2F;
 
-        world.setBlockState(
-            pos,
-            ModBlocks.AZURE_SAPLING.getDefaultState());
-        world.playSound(null,
-            pos,
-            SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME,
-            SoundCategory.BLOCKS,
-            INFUSE_VOLUME,
-            infusePitch);
-        world.spawnParticles(
-            ParticleTypes.HAPPY_VILLAGER,
-            pos.getX() + INFUSE_PARTICLE_OFFSET,
-            pos.getY() + INFUSE_PARTICLE_OFFSET,
-            pos.getZ() + INFUSE_PARTICLE_OFFSET,
-            INFUSE_PARTICLE_COUNT,
-            INFUSE_PARTICLE_DELTA, INFUSE_PARTICLE_DELTA, INFUSE_PARTICLE_DELTA,
-            INFUSE_PARTICLE_SPEED);
+        world.setBlockState(pos, ModBlocks.AZURE_SAPLING.getDefaultState());
+        world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS, INFUSE_VOLUME, infusePitch);
+        world.spawnParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + INFUSE_PARTICLE_OFFSET,
+            pos.getY() + INFUSE_PARTICLE_OFFSET, pos.getZ() + INFUSE_PARTICLE_OFFSET, INFUSE_PARTICLE_COUNT,
+            INFUSE_PARTICLE_DELTA, INFUSE_PARTICLE_DELTA, INFUSE_PARTICLE_DELTA, INFUSE_PARTICLE_SPEED);
       }
     });
   }
 
   @Override
-  public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool,
-      boolean dropExperience) {
+  public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool, boolean dropExperience) {
     if (dropExperience) {
       dropExperienceWhenMined(world, pos, tool, experienceDropped);
     }

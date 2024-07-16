@@ -16,8 +16,7 @@ public interface SpellEffect {
     invoke(world, owner, location);
   }
 
-  default void invokeOnBlockHitResult(World world, Entity owner, Vec3d location,
-      BlockHitResult blockHitResult) {
+  default void invokeOnBlockHitResult(World world, Entity owner, Vec3d location, BlockHitResult blockHitResult) {
     invoke(world, owner, location);
   }
 
@@ -25,8 +24,7 @@ public interface SpellEffect {
     invoke(world, owner, location);
   }
 
-  default void invokeOnEntityHitResult(World world, Entity owner, Vec3d location,
-      EntityHitResult entityHitResult) {
+  default void invokeOnEntityHitResult(World world, Entity owner, Vec3d location, EntityHitResult entityHitResult) {
     invoke(world, owner, location);
   }
 

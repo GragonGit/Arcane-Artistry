@@ -8,8 +8,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 public class ModFeatures {
-  public static final Feature<EmeraldOreFeatureConfig> LAPIS_CRYSTAL = register("lapis_crystal",
-      new LapisCrystalFeature(EmeraldOreFeatureConfig.CODEC));
+  public static final Feature<EmeraldOreFeatureConfig> LAPIS_CRYSTAL =
+      register("lapis_crystal", new LapisCrystalFeature(EmeraldOreFeatureConfig.CODEC));
 
   private static <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
     return Registry.register(Registries.FEATURE, ArcaneArtistry.newIdentifier(name), feature);

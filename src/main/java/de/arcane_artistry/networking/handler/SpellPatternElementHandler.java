@@ -12,8 +12,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class SpellPatternElementHandler implements PlayChannelHandler {
 
   @Override
-  public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
-      PacketByteBuf buf, PacketSender responseSender) {
+  public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf,
+      PacketSender responseSender) {
     SpellPatternElement element = buf.readEnumConstant(SpellPatternElement.class);
     server.execute(() -> {
       CastHandler.receiveSpellPatternElement(player, element);

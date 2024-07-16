@@ -18,8 +18,7 @@ public class DisarmSpellEffect implements SpellEffect {
   private static final double DROP_CHANCE = 0.3;
   private Hand hand = null;
 
-  public DisarmSpellEffect() {
-  }
+  public DisarmSpellEffect() {}
 
   public DisarmSpellEffect(Hand hand) {
     this.hand = hand;
