@@ -8,10 +8,10 @@ import de.arcane_artistry.cast.GlideHandler;
 import de.arcane_artistry.cast.client.CastInputHandler;
 import de.arcane_artistry.spell.SpellHandler;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
-import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 
 public class ModEvents {
   public static void registerServerEvents() {

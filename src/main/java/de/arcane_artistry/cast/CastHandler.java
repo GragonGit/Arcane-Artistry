@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import de.arcane_artistry.callback.cast.CastEndCallback;
 import de.arcane_artistry.item.staff.StaffItem;
 import de.arcane_artistry.spell.SpellPatternElement;
 import de.arcane_artistry.spell.spell_effect.SoundSpellEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
-import net.minecraft.sound.SoundCategory;
 
 public class CastHandler {
 

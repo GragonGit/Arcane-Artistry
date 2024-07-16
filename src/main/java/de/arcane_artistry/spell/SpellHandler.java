@@ -1,7 +1,6 @@
 package de.arcane_artistry.spell;
 
 import java.util.List;
-
 import de.arcane_artistry.item.staff.StaffItem;
 import de.arcane_artistry.spell.spell_type.spell.Spell;
 import net.minecraft.entity.player.PlayerEntity;

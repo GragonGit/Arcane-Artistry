@@ -1,7 +1,6 @@
 package de.arcane_artistry.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-
 import de.arcane_artistry.block.custom.CornerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

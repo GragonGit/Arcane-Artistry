@@ -1,7 +1,6 @@
 package de.arcane_artistry.world.gen.feature;
 
 import com.google.common.collect.ImmutableList;
-
 import de.arcane_artistry.ArcaneArtistry;
 import de.arcane_artistry.block.ModBlocks;
 import de.arcane_artistry.world.tree.ModTrees;
