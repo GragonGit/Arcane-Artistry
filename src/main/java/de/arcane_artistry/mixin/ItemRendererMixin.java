@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin {
-  private final double DOWNSCALETRANSLATE = 0.001;
+  private static final double DOWNSCALE_TRANSLATE = 0.001;
 
   @Inject(method = "renderItem", at = @At("HEAD"))
   private void renderItem(
@@ -29,8 +29,8 @@ public class ItemRendererMixin {
       CallbackInfo callbackInfo) {
 
     if (CastInputHandler.isCasting() && renderMode.isFirstPerson()) {
-      matrices.translate(CastInputHandler.getCursorX() * DOWNSCALETRANSLATE,
-          -CastInputHandler.getCursorY() * DOWNSCALETRANSLATE, 0);
+      matrices.translate(CastInputHandler.getCursorX() * DOWNSCALE_TRANSLATE,
+          -CastInputHandler.getCursorY() * DOWNSCALE_TRANSLATE, 0);
     }
   }
 }

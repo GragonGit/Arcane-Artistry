@@ -7,7 +7,7 @@ import de.arcane_artistry.item.staff.StaffItem;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class GlideHandler {
-  private final static Set<PlayerEntity> glidingPlayers = new HashSet<>();
+  private static final Set<PlayerEntity> glidingPlayers = new HashSet<>();
 
   public static boolean isPlayerGliding(PlayerEntity player) {
     return glidingPlayers.contains(player);

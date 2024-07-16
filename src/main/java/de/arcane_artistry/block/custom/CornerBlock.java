@@ -14,6 +14,9 @@ public abstract class CornerBlock extends Block {
   public static final BooleanProperty UP = Properties.UP;
   public static final BooleanProperty NORTH = Properties.NORTH;
   public static final BooleanProperty EAST = Properties.EAST;
+  
+  private static final int FACING_PROPERTIES_START_INDEX = 3;
+  private static final int FACING_PROPERTIES_END_INDEX = 6;
 
   public CornerBlock(Settings settings) {
     super(settings);
@@ -24,11 +27,9 @@ public abstract class CornerBlock extends Block {
   protected void appendProperties(Builder<Block, BlockState> builder) {
     builder.add(UP, NORTH, EAST);
   }
-
+  
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
-    final int FACING_PROPERTIES_START_INDEX = 3;
-    final int FACING_PROPERTIES_END_INDEX = 6;
     Direction[] facingDirections = Direction.getEntityFacingOrder(ctx.getPlayer());
     BlockState state = getDefaultState();
     for (int i = FACING_PROPERTIES_START_INDEX; i < FACING_PROPERTIES_END_INDEX; i++) {

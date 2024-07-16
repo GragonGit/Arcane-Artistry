@@ -1,4 +1,4 @@
-package de.arcane_artistry.entity.client.ParticleProjectileEntity;
+package de.arcane_artistry.entity.client.particle_projectile_entity;
 
 import de.arcane_artistry.entity.custom.SpellProjectileEntity;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;

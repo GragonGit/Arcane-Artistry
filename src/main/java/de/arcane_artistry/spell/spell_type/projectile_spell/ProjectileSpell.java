@@ -66,10 +66,13 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once on any collision block or entity
-   * Basically a culmination of onBlockHit and onEntityHit
+   * Is called once on any collision block or entity.
+   * Basically a culmination of onBlockHit and onEntityHit.
    * 
-   * @param hitResult
+   * @param world The minecraft world
+   * @param owner The owner of the projectile
+   * @param projectile The projectile entity
+   * @param hitResult The hit result of the collision
    */
   public void onCollision(World world, Entity owner, SpellProjectileEntity projectile, HitResult hitResult) {
     for (SpellEffect spellEffect : onCollisionSpellEffects) {
@@ -81,11 +84,14 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once when entering minecraft blocks on a new tick
-   * This means it is called everytime when shooting through a row of blocks but
-   * only once when it hits multiple blocks in the same tick e.g. a 2x2 area
+   * Is called once when entering minecraft blocks on a new tick. This means it is called everytime
+   * when shooting through a row of blocks but only once when it hits multiple blocks in the same
+   * tick e.g. a 2x2 area.
    * 
-   * @param blockHitResult
+   * @param world The minecraft world
+   * @param owner The owner of the projectile
+   * @param projectile The projectile entity
+   * @param blockHitResult The block hit result of the block hit
    */
   public void onBlockHit(World world, Entity owner, SpellProjectileEntity projectile,
       BlockHitResult blockHitResult) {
@@ -98,12 +104,14 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called when entering any new block
-   * This means unlike onBlockHit it is called for every block it hits even if it
-   * is the same tick e.g. 4 times on a 2x2 area
-   * Does NOT ignore air by default
+   * Is called when entering any new block. This means unlike onBlockHit it is called for every block
+   * it hits even if it is the same tick e.g. 4 times on a 2x2 area Does NOT ignore air by default.
    * 
-   * @param blockState
+   * 
+   * @param world The minecraft world
+   * @param owner The owner of the projectile
+   * @param projectile The projectile entity
+   * @param blockState The block state of the block collision
    */
   public void onBlockCollision(World world, Entity owner, SpellProjectileEntity projectile, BlockState blockState) {
     for (SpellEffect spellEffect : onBlockCollisionSpellEffects) {
@@ -115,9 +123,12 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once when entering any entity
+   * Is called once when entering any entity.
    * 
-   * @param entityHitResult
+   * @param world The minecraft world
+   * @param owner The owner of the projectile
+   * @param projectile The projectile entity
+   * @param entityHitResult The entity hit result of the entity hit
    */
   public void onEntityHit(World world, Entity owner, SpellProjectileEntity projectile,
       EntityHitResult entityHitResult) {
@@ -130,9 +141,12 @@ public class ProjectileSpell extends Spell {
   }
 
   /**
-   * Is called once when entering any player
+   * Is called once when entering any player.
    * 
-   * @param playerEntity
+   * @param world The minecraft world
+   * @param owner The owner of the projectile
+   * @param projectile The projectile entity
+   * @param playerEntity The player entity of the player collision
    */
   public void onPlayerCollision(World world, Entity owner, SpellProjectileEntity projectile,
       PlayerEntity playerEntity) {

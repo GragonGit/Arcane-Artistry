@@ -23,8 +23,9 @@ public class SpellHandler {
     if (spell == null) {
       if (SpellMaps.spellExists(spellPattern))
         spell = Spells.FAIL_SPELL;
-      else
+      else {
         return ActionResult.PASS;
+      }
     }
 
     spell.castSpell(world, player, hand);

@@ -37,11 +37,11 @@ public class ModConfiguredFeatures {
     return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, ArcaneArtistry.newIdentifier(name));
   }
 
-  private static <FC extends FeatureConfig, F extends Feature<FC>> void register(
+  private static <C extends FeatureConfig, F extends Feature<C>> void register(
       Registerable<ConfiguredFeature<?, ?>> context,
       RegistryKey<ConfiguredFeature<?, ?>> key,
       F feature,
-      FC configuration) {
+      C configuration) {
     context.register(key, new ConfiguredFeature<>(feature, configuration));
   }
 }

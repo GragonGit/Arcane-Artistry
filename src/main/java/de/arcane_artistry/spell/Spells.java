@@ -63,8 +63,7 @@ public class Spells {
       .setOnEntityHitSpellEffect(new DisarmSpellEffect(Hand.OFF_HAND)).build();
   public static final ProjectileSpell MORGANA_SPELL = ProjectileSpell.BUILDER.setPattern("LDR")
       .addOnEntityHitSpellEffect(new StatusEffectSpellEffect(StatusEffects.SLOWNESS, 5 * 20, 10))
-      .addOnEntityHitSpellEffect(new StatusEffectSpellEffect(StatusEffects.JUMP_BOOST, 5 * 20, 128)) // 128 prevents
-                                                                                                     // jumping
+      .addOnEntityHitSpellEffect(new StatusEffectSpellEffect(StatusEffects.JUMP_BOOST, 5 * 20, 128)) // 128 prevents jumping
       .addOnEntityHitSpellEffect(
           new SoundSpellEffect(SoundEvents.PARTICLE_SOUL_ESCAPE, SoundCategory.PLAYERS, 3F, 0.5F, 0.7F))
       .addSpellEffect(new SoundSpellEffect(SoundEvents.ENTITY_BLAZE_HURT, SoundCategory.PLAYERS, 1F, 0.3F, 0.5F))
