@@ -13,8 +13,7 @@ public class MultiSpell extends Spell {
 
   private List<Spell> spells;
 
-  public MultiSpell(String pattern, boolean isSpellComponent, List<SpellEffect> instantSpellEffects,
-      List<Spell> spells) {
+  public MultiSpell(String pattern, boolean isSpellComponent, List<SpellEffect> instantSpellEffects, List<Spell> spells) {
     super(pattern, isSpellComponent, instantSpellEffects);
     this.spells = spells;
   }

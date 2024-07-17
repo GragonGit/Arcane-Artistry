@@ -13,8 +13,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModEntities {
-  public static final EntityType<SpellProjectileEntity> SPELL_PROJECTILE_ENTITY_TYPE = registerEntityType(
-      "spell_projectile", SpawnGroup.MISC, SpellProjectileEntity::new, 0.25f, 0.25f);
+  public static final EntityType<SpellProjectileEntity> SPELL_PROJECTILE_ENTITY_TYPE =
+      registerEntityType("spell_projectile", SpawnGroup.MISC, SpellProjectileEntity::new, 0.25f, 0.25f);
 
   public static void registerModEntities() {
     ArcaneArtistry.LOGGER.info("Registering Mod Entities for " + ArcaneArtistry.MOD_ID);
@@ -22,10 +22,7 @@ public class ModEntities {
 
   private static <T extends Entity> EntityType<T> registerEntityType(String name, SpawnGroup spawnGroup,
       EntityFactory<T> entityFactory, float width, float height) {
-    return Registry.register(
-        Registries.ENTITY_TYPE,
-        new Identifier(ArcaneArtistry.MOD_ID, name),
-        FabricEntityTypeBuilder.create(spawnGroup, entityFactory).dimensions(EntityDimensions.fixed(width, height))
-            .build());
+    return Registry.register(Registries.ENTITY_TYPE, new Identifier(ArcaneArtistry.MOD_ID, name),
+        FabricEntityTypeBuilder.create(spawnGroup, entityFactory).dimensions(EntityDimensions.fixed(width, height)).build());
   }
 }

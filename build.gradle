@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version "${fabric_loom_version}"
 	id 'maven-publish'
+	id 'checkstyle'
 	id "com.github.ben-manes.versions" version "${gradle_update_version}"
 }
 
@@ -58,6 +59,11 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
+}
+
+checkstyle {
+    toolVersion = "10.17.0"
+    showViolations = false
 }
 
 // configure the maven publication

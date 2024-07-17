@@ -15,6 +15,9 @@ public abstract class CornerBlock extends Block {
   public static final BooleanProperty NORTH = Properties.NORTH;
   public static final BooleanProperty EAST = Properties.EAST;
 
+  private static final int FACING_PROPERTIES_START_INDEX = 3;
+  private static final int FACING_PROPERTIES_END_INDEX = 6;
+
   public CornerBlock(Settings settings) {
     super(settings);
     setDefaultState(stateManager.getDefaultState().with(UP, true).with(NORTH, true).with(EAST, true));
@@ -27,8 +30,6 @@ public abstract class CornerBlock extends Block {
 
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
-    final int FACING_PROPERTIES_START_INDEX = 3;
-    final int FACING_PROPERTIES_END_INDEX = 6;
     Direction[] facingDirections = Direction.getEntityFacingOrder(ctx.getPlayer());
     BlockState state = getDefaultState();
     for (int i = FACING_PROPERTIES_START_INDEX; i < FACING_PROPERTIES_END_INDEX; i++) {
@@ -41,14 +42,10 @@ public abstract class CornerBlock extends Block {
   public BlockState rotate(BlockState state, BlockRotation rotation) {
     return switch (rotation) {
       case NONE -> state;
-      case CLOCKWISE_90 ->
-        state.get(NORTH) && state.get(EAST)
-            ? state.with(NORTH, !state.get(NORTH))
-            : state.with(EAST, !state.get(EAST));
-      case COUNTERCLOCKWISE_90 ->
-        state.get(NORTH) && state.get(EAST)
-            ? state.with(EAST, !state.get(EAST))
-            : state.with(NORTH, !state.get(NORTH));
+      case CLOCKWISE_90 -> state.get(NORTH) && state.get(EAST) ? state.with(NORTH, !state.get(NORTH))
+          : state.with(EAST, !state.get(EAST));
+      case COUNTERCLOCKWISE_90 -> state.get(NORTH) && state.get(EAST) ? state.with(EAST, !state.get(EAST))
+          : state.with(NORTH, !state.get(NORTH));
       case CLOCKWISE_180 -> state.with(NORTH, !state.get(NORTH)).with(EAST, !state.get(EAST));
       default -> state;
     };

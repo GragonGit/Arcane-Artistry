@@ -13,13 +13,12 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class DisarmSpellEffect implements SpellEffect {
-  private final double DROPOFFSET = 0.5;
-  private final double DROPVELOCITY = 0.2;
-  private final double DROPCHANCE = 0.3;
+  private static final double DROP_OFFSET = 0.5;
+  private static final double DROP_VELOCITY = 0.2;
+  private static final double DROP_CHANCE = 0.3;
   private Hand hand = null;
 
-  public DisarmSpellEffect() {
-  }
+  public DisarmSpellEffect() {}
 
   public DisarmSpellEffect(Hand hand) {
     this.hand = hand;
@@ -47,16 +46,17 @@ public class DisarmSpellEffect implements SpellEffect {
 
     if (!handStack.isEmpty()) {
       Vec3d lookVec = entity.getRotationVec(1).normalize();
-      Vec3d dropPos = entity.getPos().add(lookVec.x * DROPOFFSET,
-          lookVec.y * DROPOFFSET + entity.getEyeHeight(entity.getPose()), lookVec.z * DROPOFFSET);
+      Vec3d dropPos = entity.getPos().add(lookVec.x * DROP_OFFSET,
+          lookVec.y * DROP_OFFSET + entity.getEyeHeight(entity.getPose()), lookVec.z * DROP_OFFSET);
 
       ItemEntity itemEntity = new ItemEntity(world, dropPos.x, dropPos.y, dropPos.z, handStack);
-      itemEntity.setVelocity(lookVec.x * DROPVELOCITY, lookVec.y * DROPVELOCITY, lookVec.z * DROPVELOCITY);
+      itemEntity.setVelocity(lookVec.x * DROP_VELOCITY, lookVec.y * DROP_VELOCITY, lookVec.z * DROP_VELOCITY);
 
-      if (!(entity instanceof PlayerEntity) && Random.create().nextDouble() > DROPCHANCE) {
+      if (!(entity instanceof PlayerEntity) && Random.create().nextDouble() > DROP_CHANCE) {
         entity.sendToolBreakStatus(hand);
-      } else
+      } else {
         world.spawnEntity(itemEntity);
+      }
 
       entity.setStackInHand(hand, ItemStack.EMPTY);
     }

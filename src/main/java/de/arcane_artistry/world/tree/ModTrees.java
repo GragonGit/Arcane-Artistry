@@ -18,14 +18,12 @@ import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 public class ModTrees {
-  public static final TreeFeatureConfig AZURE_TREE_FEATURE_CONFIG = new TreeFeatureConfig.Builder(
-      BlockStateProvider.of(ModBlocks.AZURE_LOG),
-      new StraightTrunkPlacer(4, 2, 0),
-      new WeightedBlockStateProvider(DataPool.<BlockState>builder()
-          .add(ModBlocks.AZURE_LEAVES.getDefaultState(), 7)
-          .add(ModBlocks.SHIMMERING_AZURE_LEAVES.getDefaultState(), 1).build()),
-      new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 4),
-      new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build();
+  public static final TreeFeatureConfig AZURE_TREE_FEATURE_CONFIG =
+      new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.AZURE_LOG), new StraightTrunkPlacer(4, 2, 0),
+          new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ModBlocks.AZURE_LEAVES.getDefaultState(), 7)
+              .add(ModBlocks.SHIMMERING_AZURE_LEAVES.getDefaultState(), 1).build()),
+          new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 4),
+          new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build();
 
   public static void registerStrippable() {
     StrippableBlockRegistry.register(ModBlocks.AZURE_LOG, ModBlocks.STRIPPED_AZURE_LOG);

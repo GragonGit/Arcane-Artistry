@@ -10,8 +10,6 @@ public class ModModels {
   public static final Model LAPIS_CRYSTAL = block("lapis_crystal", TextureKey.ALL);
 
   private static Model block(String parent, TextureKey... requiredTextureKeys) {
-    return new Model(Optional.of(ArcaneArtistry.newIdentifier("block/" + parent)),
-        Optional.empty(),
-        requiredTextureKeys);
+    return new Model(Optional.of(ArcaneArtistry.newIdentifier("block/" + parent)), Optional.empty(), requiredTextureKeys);
   }
 }

@@ -24,10 +24,9 @@ public class ParticleSpellEffect implements SpellEffect {
     if (world instanceof ServerWorld serverWorld) {
       double heightoffset = owner instanceof LivingEntity entity ? entity.getEyeHeight(entity.getPose()) : 0;
       for (int i = 0; i < particleCount; i++) {
-        Vec3d particlePosition = location.add(getParticleRadius(world), getParticleRadius(world) + heightoffset,
-            getParticleRadius(world));
-        serverWorld.spawnParticles(particleType, particlePosition.x, particlePosition.y, particlePosition.z, 1, 0, 0, 0,
-            0);
+        Vec3d particlePosition =
+            location.add(getParticleRadius(world), getParticleRadius(world) + heightoffset, getParticleRadius(world));
+        serverWorld.spawnParticles(particleType, particlePosition.x, particlePosition.y, particlePosition.z, 1, 0, 0, 0, 0);
       }
     }
   }

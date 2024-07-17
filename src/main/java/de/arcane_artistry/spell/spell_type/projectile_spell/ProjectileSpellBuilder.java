@@ -185,13 +185,11 @@ public class ProjectileSpellBuilder<BUILDER extends ProjectileSpellBuilder<BUILD
   @SuppressWarnings("unchecked")
   public SPELL build() {
     validate();
-    ProjectileSpell projectileSpell = new ProjectileSpell(pattern, velocity, particleEffect, hasNoPattern,
-        translationOffset, yaw, pitch,
-        List.copyOf(instantSpellEffects), List.copyOf(onCollisionSpellEffects), List.copyOf(onBlockHitSpellEffects),
+    ProjectileSpell projectileSpell = new ProjectileSpell(pattern, velocity, particleEffect, hasNoPattern, translationOffset, yaw,
+        pitch, List.copyOf(instantSpellEffects), List.copyOf(onCollisionSpellEffects), List.copyOf(onBlockHitSpellEffects),
         List.copyOf(onBlockCollisionSpellEffects), List.copyOf(onEntityHitSpellEffects),
-        List.copyOf(onPlayerCollisionSpellEffects),
-        destroyOnHitResult, destroyOnBlockHitResult, destroyOnBlockState, destroyOnEntityHitResult,
-        destroyOnPlayerEntity);
+        List.copyOf(onPlayerCollisionSpellEffects), destroyOnHitResult, destroyOnBlockHitResult, destroyOnBlockState,
+        destroyOnEntityHitResult, destroyOnPlayerEntity);
     cleanup();
 
     return (SPELL) projectileSpell;

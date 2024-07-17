@@ -34,8 +34,8 @@ public class SpellProjectileEntity extends ProjectileEntity {
     super(entityType, world);
   }
 
-  public SpellProjectileEntity(EntityType<? extends ProjectileEntity> entityType, World world,
-      ProjectileSpell spell, LivingEntity owner, Vec3d position, Vec3d velocity) {
+  public SpellProjectileEntity(EntityType<? extends ProjectileEntity> entityType, World world, ProjectileSpell spell,
+      LivingEntity owner, Vec3d position, Vec3d velocity) {
     this(entityType, world);
     setOwner(owner);
     setPosition(position);
@@ -152,9 +152,7 @@ public class SpellProjectileEntity extends ProjectileEntity {
   }
 
   static {
-    PARTICLE_TYPE = DataTracker.registerData(SpellProjectileEntity.class,
-        TrackedDataHandlerRegistry.PARTICLE);
-    HAS_PARTICLE = DataTracker.registerData(SpellProjectileEntity.class,
-        TrackedDataHandlerRegistry.BOOLEAN);
+    PARTICLE_TYPE = DataTracker.registerData(SpellProjectileEntity.class, TrackedDataHandlerRegistry.PARTICLE);
+    HAS_PARTICLE = DataTracker.registerData(SpellProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
   }
 }

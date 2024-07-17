@@ -35,13 +35,12 @@ public class StatusEffectSpellEffect implements SpellEffect {
   }
 
   private void applyPotionEffect(Entity owner, LivingEntity target) {
-    target.addStatusEffect(
-        new StatusEffectInstance(statusEffectType, duration, amplifier, ambient, showParticles, showIcon), owner);
+    target.addStatusEffect(new StatusEffectInstance(statusEffectType, duration, amplifier, ambient, showParticles, showIcon),
+        owner);
   }
 
   @Override
-  public void invoke(World world, Entity owner, Vec3d location) {
-  }
+  public void invoke(World world, Entity owner, Vec3d location) {}
 
   @Override
   public void invokeOnEntityHitResult(World world, Entity owner, Vec3d location, EntityHitResult entityHitResult) {

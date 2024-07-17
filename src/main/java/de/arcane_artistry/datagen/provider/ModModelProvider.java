@@ -36,10 +36,10 @@ public class ModModelProvider extends FabricModelProvider {
     blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHIMMERING_AZURE_LEAVES);
     blockStateModelGenerator.registerTintableCross(ModBlocks.AZURE_SAPLING, TintType.NOT_TINTED);
     // Lapis Crystal
-    registerCornerLikeOrientable(blockStateModelGenerator,
-        ModBlocks.STONE_LAPIS_CRYSTAL, ModModels.LAPIS_CRYSTAL, TextureMap.all(Blocks.STONE));
-    registerCornerLikeOrientable(blockStateModelGenerator,
-        ModBlocks.DEEPSLATE_LAPIS_CRYSTAL, ModModels.LAPIS_CRYSTAL, TextureMap.all(Blocks.DEEPSLATE));
+    registerCornerLikeOrientable(blockStateModelGenerator, ModBlocks.STONE_LAPIS_CRYSTAL, ModModels.LAPIS_CRYSTAL,
+        TextureMap.all(Blocks.STONE));
+    registerCornerLikeOrientable(blockStateModelGenerator, ModBlocks.DEEPSLATE_LAPIS_CRYSTAL, ModModels.LAPIS_CRYSTAL,
+        TextureMap.all(Blocks.DEEPSLATE));
   }
 
   @Override
@@ -58,41 +58,29 @@ public class ModModelProvider extends FabricModelProvider {
     itemModelGenerator.register(ModItems.SPELL_GLOSSARY, Models.GENERATED);
   }
 
-  public static void registerCornerLikeOrientable(
-      BlockStateModelGenerator blockStateModelGenerator,
-      Block block,
-      Model model,
+  public static void registerCornerLikeOrientable(BlockStateModelGenerator blockStateModelGenerator, Block block, Model model,
       TextureMap textureMap) {
-    Identifier modelID = model.upload(block, textureMap, blockStateModelGenerator.modelCollector);
-    blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block)
-        .coordinate(BlockStateVariantMap.create(Properties.NORTH, Properties.EAST, Properties.UP)
-            .register(true, true, true, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.Y, VariantSettings.Rotation.R90))
-            .register(false, true, true, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
+    Identifier modelId = model.upload(block, textureMap, blockStateModelGenerator.modelCollector);
+    blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap
+        .create(Properties.NORTH, Properties.EAST, Properties.UP)
+        .register(true, true, true,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+        .register(false, true, true,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+        .register(true, false, true,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+        .register(false, false, true,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+        .register(true, true, false,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.X, VariantSettings.Rotation.R180)
                 .put(VariantSettings.Y, VariantSettings.Rotation.R180))
-            .register(true, false, true, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.Y, VariantSettings.Rotation.R0))
-            .register(false, false, true, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
+        .register(false, true, false,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.X, VariantSettings.Rotation.R180)
                 .put(VariantSettings.Y, VariantSettings.Rotation.R270))
-            .register(true, true, false, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.X, VariantSettings.Rotation.R180)
-                .put(VariantSettings.Y, VariantSettings.Rotation.R180))
-            .register(false, true, false, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.X, VariantSettings.Rotation.R180)
-                .put(VariantSettings.Y, VariantSettings.Rotation.R270))
-            .register(true, false, false, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.X, VariantSettings.Rotation.R180)
+        .register(true, false, false,
+            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.X, VariantSettings.Rotation.R180)
                 .put(VariantSettings.Y, VariantSettings.Rotation.R90))
-            .register(false, false, false, BlockStateVariant.create()
-                .put(VariantSettings.MODEL, modelID)
-                .put(VariantSettings.X, VariantSettings.Rotation.R180)
-                .put(VariantSettings.Y, VariantSettings.Rotation.R0))));
+        .register(false, false, false, BlockStateVariant.create().put(VariantSettings.MODEL, modelId)
+            .put(VariantSettings.X, VariantSettings.Rotation.R180).put(VariantSettings.Y, VariantSettings.Rotation.R0))));
   }
 }

@@ -1,7 +1,6 @@
 package de.arcane_artistry.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-
 import de.arcane_artistry.block.custom.CornerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,24 +29,16 @@ public class LapisCrystalFeature extends Feature<EmeraldOreFeatureConfig> {
       if (!hasAirCorner(isSideAir))
         continue;
 
-      structureWorldAccess.setBlockState(
-          blockPos,
-          calculateCornerState(isSideAir, target.state),
-          Block.NOTIFY_LISTENERS);
+      structureWorldAccess.setBlockState(blockPos, calculateCornerState(isSideAir, target.state), Block.NOTIFY_LISTENERS);
       break;
     }
     return true;
   }
 
   private static Boolean[] calculateAirSides(StructureWorldAccess world, BlockPos blockPos) {
-    Boolean[] isSideAir = {
-        world.getBlockState(blockPos.up()).isAir(),
-        world.getBlockState(blockPos.down()).isAir(),
-        world.getBlockState(blockPos.north()).isAir(),
-        world.getBlockState(blockPos.east()).isAir(),
-        world.getBlockState(blockPos.south()).isAir(),
-        world.getBlockState(blockPos.west()).isAir()
-    };
+    Boolean[] isSideAir = {world.getBlockState(blockPos.up()).isAir(), world.getBlockState(blockPos.down()).isAir(),
+        world.getBlockState(blockPos.north()).isAir(), world.getBlockState(blockPos.east()).isAir(),
+        world.getBlockState(blockPos.south()).isAir(), world.getBlockState(blockPos.west()).isAir()};
     return isSideAir;
   }
 
@@ -72,9 +63,7 @@ public class LapisCrystalFeature extends Feature<EmeraldOreFeatureConfig> {
   }
 
   private static BlockState calculateCornerState(Boolean[] isSideAir, BlockState blockState) {
-    return blockState
-        .with(CornerBlock.UP, isSideAir[0])
-        .with(CornerBlock.NORTH, isSideAir[2])
-        .with(CornerBlock.EAST, isSideAir[3]);
+    return blockState.with(CornerBlock.UP, isSideAir[0]).with(CornerBlock.NORTH, isSideAir[2]).with(CornerBlock.EAST,
+        isSideAir[3]);
   }
 }

@@ -20,32 +20,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
   @Override
   public void generate(RecipeExporter exporter) {
     // Staffs
-    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CROOKED_STAFF)
-        .pattern("  S")
-        .pattern(" S ")
-        .pattern("S  ")
+    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CROOKED_STAFF).pattern("  S").pattern(" S ").pattern("S  ")
         .input('S', ModItems.ODDLY_SHAPED_STICK)
         .criterion(hasItem(ModItems.ODDLY_SHAPED_STICK), conditionsFromItem(ModItems.ODDLY_SHAPED_STICK))
         .offerTo(exporter, ArcaneArtistry.newIdentifier(getRecipeName(ModItems.CROOKED_STAFF)));
-    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BASIC_STAFF)
-        .pattern(" LD")
-        .pattern("LCL")
-        .pattern("AL ")
-        .input('C', ModItems.CROOKED_STAFF)
-        .input('L', ConventionalItemTags.LAPIS)
-        .input('D', ConventionalItemTags.DIAMONDS)
-        .input('A', ModItemTags.AZURE_LOGS)
-        .criterion(hasItem(ModItems.CROOKED_STAFF), conditionsFromItem(ModItems.CROOKED_STAFF))
+    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BASIC_STAFF).pattern(" LD").pattern("LCL").pattern("AL ")
+        .input('C', ModItems.CROOKED_STAFF).input('L', ConventionalItemTags.LAPIS).input('D', ConventionalItemTags.DIAMONDS)
+        .input('A', ModItemTags.AZURE_LOGS).criterion(hasItem(ModItems.CROOKED_STAFF), conditionsFromItem(ModItems.CROOKED_STAFF))
         .offerTo(exporter, ArcaneArtistry.newIdentifier(getRecipeName(ModItems.BASIC_STAFF)));
-    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ADVANCED_STAFF)
-        .pattern("LCC")
-        .pattern("OSC")
-        .pattern("BOL")
-        .input('S', ModItems.BASIC_STAFF)
-        .input('C', ModItems.LAPIS_CRYSTAL)
-        .input('L', Items.LAPIS_BLOCK)
-        .input('O', Items.OBSIDIAN)
-        .input('B', Items.BLAZE_ROD)
+    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ADVANCED_STAFF).pattern("LCC").pattern("OSC").pattern("BOL")
+        .input('S', ModItems.BASIC_STAFF).input('C', ModItems.LAPIS_CRYSTAL).input('L', Items.LAPIS_BLOCK)
+        .input('O', Items.OBSIDIAN).input('B', Items.BLAZE_ROD)
         .criterion(hasItem(ModItems.BASIC_STAFF), conditionsFromItem(ModItems.BASIC_STAFF))
         .offerTo(exporter, ArcaneArtistry.newIdentifier(getRecipeName(ModItems.ADVANCED_STAFF)));
 

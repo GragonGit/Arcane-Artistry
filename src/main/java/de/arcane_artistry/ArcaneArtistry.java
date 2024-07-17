@@ -2,7 +2,6 @@ package de.arcane_artistry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import de.arcane_artistry.block.ModBlocks;
 import de.arcane_artistry.callback.ModEvents;
 import de.arcane_artistry.entity.ModEntities;

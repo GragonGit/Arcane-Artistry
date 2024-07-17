@@ -14,9 +14,7 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
-  public ModItemTagProvider(
-      FabricDataOutput output,
-      CompletableFuture<WrapperLookup> completableFuture,
+  public ModItemTagProvider(FabricDataOutput output, CompletableFuture<WrapperLookup> completableFuture,
       @Nullable BlockTagProvider blockTagProvider) {
     super(output, completableFuture, blockTagProvider);
   }

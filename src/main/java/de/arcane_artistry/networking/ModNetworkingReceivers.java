@@ -9,8 +9,7 @@ public class ModNetworkingReceivers {
   public static void registerServerReceivers() {
     ArcaneArtistry.LOGGER.info("Registering Receivers for " + ArcaneArtistry.MOD_ID);
 
-    ServerPlayNetworking.registerGlobalReceiver(
-        ModNetworkingConstants.SPELL_PATTERN_ELEMENT_PACKET_ID,
+    ServerPlayNetworking.registerGlobalReceiver(ModNetworkingConstants.SPELL_PATTERN_ELEMENT_PACKET_ID,
         new SpellPatternElementHandler());
   }
 

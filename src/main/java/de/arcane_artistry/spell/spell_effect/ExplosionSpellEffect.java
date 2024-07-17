@@ -15,8 +15,7 @@ public class ExplosionSpellEffect implements SpellEffect {
   }
 
   private void createExplosion(World world, Entity owner, Vec3d location) {
-    world.createExplosion(owner, location.getX(), location.getY(), location.getZ(), power, createFire,
-        ExplosionSourceType.TNT);
+    world.createExplosion(owner, location.getX(), location.getY(), location.getZ(), power, createFire, ExplosionSourceType.TNT);
   }
 
   @Override

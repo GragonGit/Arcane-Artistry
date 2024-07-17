@@ -13,8 +13,7 @@ public class SoundSpellEffect implements SpellEffect {
   float minPitch;
   float maxPitch;
 
-  public SoundSpellEffect(SoundEvent soundEvent, SoundCategory soundCategory, float volume, float minPitch,
-      float maxPitch) {
+  public SoundSpellEffect(SoundEvent soundEvent, SoundCategory soundCategory, float volume, float minPitch, float maxPitch) {
     this.soundEvent = soundEvent;
     this.soundCategory = soundCategory;
     this.volume = volume;

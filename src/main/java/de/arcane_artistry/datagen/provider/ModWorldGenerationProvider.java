@@ -8,8 +8,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 public class ModWorldGenerationProvider extends FabricDynamicRegistryProvider {
-  public ModWorldGenerationProvider(FabricDataOutput output,
-      CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+  public ModWorldGenerationProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
     super(output, registriesFuture);
   }
 

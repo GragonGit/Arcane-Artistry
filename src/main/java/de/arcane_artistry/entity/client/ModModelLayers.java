@@ -2,7 +2,7 @@ package de.arcane_artistry.entity.client;
 
 import de.arcane_artistry.ArcaneArtistry;
 import de.arcane_artistry.entity.ModEntities;
-import de.arcane_artistry.entity.client.ParticleProjectileEntity.ArcaneArtistryProjectileEntityRenderer;
+import de.arcane_artistry.entity.client.particle_projectile_entity.ArcaneArtistryProjectileEntityRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 
 public class ModModelLayers {

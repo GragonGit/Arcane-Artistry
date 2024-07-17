@@ -18,7 +18,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 
 public class ModLootTableProvider extends FabricBlockLootTableProvider {
-  private static final float[] ODDLY_SHAPED_STICK_DROP_CHANCE = new float[] { 0.05F, 0.1F, 0.25F, 0.4F };
+  private static final float[] ODDLY_SHAPED_STICK_DROP_CHANCE = new float[] {0.05F, 0.1F, 0.25F, 0.4F};
 
   public ModLootTableProvider(FabricDataOutput dataOutput) {
     super(dataOutput);
@@ -49,11 +49,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         .dropsWithSilkTouchOrShears(leaves,
             addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop))
                 .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, chance)))
-        .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
-            .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+        .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
             .with(applyExplosionDecay(leaves,
-                ItemEntry.builder(Items.STICK)
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
-                .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, LEAVES_STICK_DROP_CHANCE))));
+                ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
+                    .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, LEAVES_STICK_DROP_CHANCE))));
   }
 }
