@@ -1,7 +1,6 @@
 name: Check Changelog and Version
 
 on: 
-  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -22,9 +21,9 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            echo github.repository_owner
-            echo github.repository
-            echo github.ref_name
+            echo context.repo.owner
+            echo context.repo.repo
+            echo context.issue.number
 
             const pr = await github.pulls.get({
               owner: github.repository_owner,
