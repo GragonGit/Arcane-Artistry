@@ -24,7 +24,7 @@ jobs:
             const pr = await github.pulls.get({
               owner: ${{ github.repository_owner }},
               repo: ${{ github.repository }},
-              pull_number: ${{ github.ref_name }},
+              pull_number: 33,
             });
 
             const labels = pr.data.labels.map(label => label.name);
