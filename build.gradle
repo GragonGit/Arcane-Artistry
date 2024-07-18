@@ -63,7 +63,8 @@ jar {
 
 checkstyle {
     toolVersion = "10.17.0"
-    showViolations = false
+    showViolations = true
+    maxWarnings = 0
 }
 
 // configure the maven publication
