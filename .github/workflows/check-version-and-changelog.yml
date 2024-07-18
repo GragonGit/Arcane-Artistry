@@ -1,6 +1,7 @@
 name: Check Changelog and Version
 
-on:
+on: 
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -22,9 +23,9 @@ jobs:
         with:
           script: |
             const pr = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
+              owner: github.repository_owner,
+              repo: github.repository,
+              pull_number: github.ref_name,
             });
 
             const labels = pr.data.labels.map(label => label.name);
