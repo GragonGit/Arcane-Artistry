@@ -26,7 +26,7 @@ jobs:
         env:
           BRANCH: ${{ github.ref_name }}
         id: extract_pr_number
-        run: echo "pr_number=${BRANCH##*/}" >> $GITHUB_OUTPUT
+        run: echo "pr_number=${BRANCH%%/*}" >> $GITHUB_OUTPUT
 
       - name: Check for bypass label
         id: check_bypass
