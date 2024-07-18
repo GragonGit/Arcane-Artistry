@@ -16,15 +16,21 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Extract PR number
+        env:
+            BRANCH: ${{ github.ref_name }}
+        id: extract_pr_number
+        run: echo "::set-output name=pr_number::${BRANCH##*/}"
+
       - name: Check for bypass label
         id: check_bypass
         uses: actions/github-script@v5
         with:
           script: |
             const pr = await github.rest.pulls.get({
-              owner: "",
+              owner: "${{ github.repository_owner }}",
               repo: "${{ github.repository }}",
-              pull_number: "${{ 33 }}",
+              pull_number: "${{ steps.extract_pr_number.outputs.pr_number }}",
             });
 
             const labels = pr.data.labels.map(label => label.name);
