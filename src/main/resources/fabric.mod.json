@@ -1,17 +1,19 @@
 {
   "schemaVersion": 1,
   "id": "arcane-artistry",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Arcane Artistry",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Arcane Artistry is a magic mod that aims at turning the act of casting spells into a more interactive experience. Harnessing the magical powers of lapis lazuli spells are cast by moving the staff into the respective pattern e.g. up, down, left, right for a fireball.",
   "authors": [
-    "Me!"
+    "Gragon",
+    "Calamaris",
+    "TanConan"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://arcane-artistry.de",
+    "sources": "https://github.com/GragonGit/Arcane-Artistry"
   },
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/arcane-artistry/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -29,12 +31,10 @@
     "arcane-artistry.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.9",
-    "minecraft": "~1.20.4",
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft_version}",
     "java": ">=17",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabric-api": "*",
+    "Patchouli": "~${patchouli_version}"
   }
 }
