@@ -20,13 +20,13 @@ jobs:
         env:
             BRANCH: ${{ github.repository }}
         id: extract_repository_name
-        run: echo "::set-output name=repo_name::${BRANCH##*/}"
-
+        run: echo "repo_name=${BRANCH##*/}" >> $GITHUB_OUTPUT
+        
       - name: Extract PR number
         env:
-            BRANCH: ${{ github.ref_name }}
+          BRANCH: ${{ github.ref_name }}
         id: extract_pr_number
-        run: echo "::set-output name=pr_number::${BRANCH*/##}"
+        run: echo "pr_number=${BRANCH##*/}" >> $GITHUB_OUTPUT
 
       - name: Check for bypass label
         id: check_bypass
