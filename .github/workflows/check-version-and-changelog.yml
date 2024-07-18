@@ -28,7 +28,7 @@ jobs:
             });
 
             const labels = pr.data.labels.map(label => label.name);
-            return labels.includes('bypass-version-check');
+            return labels.includes('Keep Version');
 
       - name: Check if version and changelog are updated
         if: steps.check_bypass.outputs.result != 'true'
