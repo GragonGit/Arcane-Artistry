@@ -22,9 +22,9 @@ jobs:
         with:
           script: |
             const pr = await github.rest.pulls.get({
-              owner: ${{ github.repository_owner }},
-              repo: ${{ github.repository }},
-              pull_number: ${{ 33 }},
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.repository }}",
+              pull_number: "${{ 33 }}",
             });
 
             const labels = pr.data.labels.map(label => label.name);
