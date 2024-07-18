@@ -22,6 +22,10 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
+            echo github.repository_owner
+            echo github.repository
+            echo github.ref_name
+
             const pr = await github.pulls.get({
               owner: github.repository_owner,
               repo: github.repository,
