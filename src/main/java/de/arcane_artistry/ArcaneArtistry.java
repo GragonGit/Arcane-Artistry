@@ -7,7 +7,6 @@ import de.arcane_artistry.callback.ModEvents;
 import de.arcane_artistry.entity.ModEntities;
 import de.arcane_artistry.item.ModItemGroups;
 import de.arcane_artistry.item.ModItems;
-
 import de.arcane_artistry.networking.ModNetworkingReceivers;
 import de.arcane_artistry.world.gen.ModWorldGeneration;
 import de.arcane_artistry.world.gen.feature.ModFeatures;
