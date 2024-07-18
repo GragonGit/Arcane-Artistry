@@ -1,4 +1,4 @@
-# Changelog test
+# Changelog
 The Arcane Artistry Changelog. We use Epoch-Based Versioning where:
 - `X` is for major releases
 - `Y` is for major changes
