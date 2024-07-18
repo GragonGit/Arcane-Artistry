@@ -22,8 +22,8 @@ jobs:
         with:
           script: |
             const pr = await github.pulls.get({
-              owner: ${{ github.repository_owner }},
-              repo: ${{ github.repository }},
+              owner: GragonGit,
+              repo: GragonGit/Arcane-Artistry,
               pull_number: 33,
             });
 
