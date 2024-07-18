@@ -22,7 +22,7 @@ jobs:
         with:
           script: |
             const pr = await github.rest.pulls.get({
-              owner: "${{ github.repository_owner }}",
+              owner: "",
               repo: "${{ github.repository }}",
               pull_number: "${{ 33 }}",
             });
