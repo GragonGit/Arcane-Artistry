@@ -18,9 +18,15 @@ jobs:
 
       - name: Extract PR number
         env:
+            BRANCH: ${{ github.repository }}
+        id: extract_repository_name
+        run: echo "::set-output name=repo_name::${BRANCH##*/}"
+
+      - name: Extract PR number
+        env:
             BRANCH: ${{ github.ref_name }}
         id: extract_pr_number
-        run: echo "::set-output name=pr_number::${BRANCH##*/}"
+        run: echo "::set-output name=pr_number::${BRANCH*/##}"
 
       - name: Check for bypass label
         id: check_bypass
@@ -29,7 +35,7 @@ jobs:
           script: |
             const pr = await github.rest.pulls.get({
               owner: "${{ github.repository_owner }}",
-              repo: "${{ github.repository }}",
+              repo: "${{ steps.extract_repository_name.outputs.repo_name }}",
               pull_number: "${{ steps.extract_pr_number.outputs.pr_number }}",
             });
 
