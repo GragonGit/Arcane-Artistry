@@ -1,0 +1,5 @@
+{
+  "id": "arcane_artistry_staffs:fire_wand",
+  "allowed_tags": ["arcane_artistry:cantrip", "arcane_artistry:element/fire"],
+  "cooldown_ticks": 20
+}

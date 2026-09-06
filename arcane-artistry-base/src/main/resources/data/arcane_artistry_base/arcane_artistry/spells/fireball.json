@@ -1,0 +1,19 @@
+{
+  "id": "arcane_artistry_spells:fireball",
+  "name": "Fireball",
+  "pattern": ["UP", "RIGHT", "DOWN"],
+  "tags": ["arcane_artistry:element/fire"],
+  "tier": 1,
+  "cooldown_ticks": 40,
+  "cost": {
+    "_comment": "reserved for future mana/resource system, unused in v1"
+  },
+  "effect": {
+    "type": "arcane_artistry_spells:projectile",
+    "params": {
+      "projectile": "fireball",
+      "speed": 1.5,
+      "damage": 6.0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+dependencies {
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Plain project dependency, not a Loom "...Elements" cross-project
+    // configuration: no remapping happens between subprojects on an
+    // unobfuscated Minecraft version, so this is just an ordinary Gradle
+    // multi-project dependency. `api` (not `implementation`) because
+    // consumers of this module's classes also need core's types on their
+    // compile classpath (e.g. GestureCastable, GestureCastCallback).
+    api project(':arcane-artistry-core')
+}

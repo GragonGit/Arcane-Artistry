@@ -1,0 +1,14 @@
+// This project has no Java source of its own -- src/main/java is
+// deliberately absent. Its only job is to bundle the "real" modules into
+// one distributable jar via Loom's jar-in-jar `include` mechanism, exactly
+// as Fabric API's own repository bundles its many subprojects into one
+// download (design document section 3).
+//
+// Porting note: pre-26.1, this bundling step produced its output via a task
+// called `remapJar`. On this (unobfuscated) Minecraft version there's
+// nothing to remap, so the plain `jar` task is the one that matters --
+// see https://docs.fabricmc.net/develop/porting/ point 9.
+dependencies {
+    include project(':arcane-artistry-core')
+    include project(':arcane-artistry-base')
+}

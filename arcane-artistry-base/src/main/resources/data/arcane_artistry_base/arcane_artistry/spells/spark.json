@@ -1,0 +1,19 @@
+{
+  "id": "arcane_artistry_spells:spark",
+  "name": "Spark",
+  "pattern": ["LEFT", "RIGHT"],
+  "tags": ["arcane_artistry:cantrip"],
+  "tier": 0,
+  "cooldown_ticks": 30,
+  "cost": {
+    "_comment": "reserved for future mana/resource system, unused in v1"
+  },
+  "effect": {
+    "type": "arcane_artistry_spells:self_buff",
+    "params": {
+      "effect": "minecraft:speed",
+      "duration": 100,
+      "amplifier": 0
+    }
+  }
+}

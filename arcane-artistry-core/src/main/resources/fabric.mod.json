@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "arcane_artistry_core",
+  "version": "${version}",
+  "name": "Arcane Artistry: Core",
+  "description": "Gesture drawing and pattern-matching engine for Arcane Artistry. Knows nothing about spells, staffs, or elements -- that vocabulary belongs to arcane_artistry_base (or any other module built on top of this one).",
+  "authors": [
+    "You"
+  ],
+  "contact": {},
+  "license": "ARR",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.arcaneartistry.core.ArcaneArtistryCore"
+    ],
+    "client": [
+      "net.arcaneartistry.core.client.ArcaneArtistryCoreClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

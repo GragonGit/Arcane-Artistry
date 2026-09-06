@@ -1,0 +1,5 @@
+{
+  "id": "arcane_artistry_staffs:starter_staff",
+  "allowed_tags": ["arcane_artistry:cantrip"],
+  "cooldown_ticks": 15
+}

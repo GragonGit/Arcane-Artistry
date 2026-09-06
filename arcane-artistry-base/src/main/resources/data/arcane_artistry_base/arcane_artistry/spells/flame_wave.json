@@ -1,0 +1,18 @@
+{
+  "id": "arcane_artistry_spells:flame_wave",
+  "name": "Flame Wave",
+  "pattern": ["DOWN", "UP", "LEFT", "RIGHT"],
+  "tags": ["arcane_artistry:element/fire"],
+  "tier": 2,
+  "cooldown_ticks": 100,
+  "cost": {
+    "_comment": "reserved for future mana/resource system, unused in v1"
+  },
+  "effect": {
+    "type": "arcane_artistry_spells:area_damage",
+    "params": {
+      "radius": 4.0,
+      "damage": 5.0
+    }
+  }
+}

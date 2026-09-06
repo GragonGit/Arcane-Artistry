@@ -1,0 +1,62 @@
+{
+  "name": "Arcane Artistry (Fabric mod dev, Java 25)",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+  // Container runs as root so it lines up with the SSH/gitconfig mounts
+  // below (which target /root) without extra permission juggling. If you'd
+  // rather run as the non-root default user some devcontainer images use,
+  // change this to that user and update the two mount targets and
+  // postCreateCommand's /root paths to match its home directory instead.
+  "remoteUser": "root",
+
+  "features": {
+    // Java 25 is a hard requirement for Minecraft 26.x -- see the project
+    // README's "Before you build" section. installGradle also bootstraps a
+    // system `gradle` binary, used once below to generate this repo's
+    // gradlew/gradlew.bat/wrapper jar (not checked in, since they need
+    // network access to materialize -- see gradle/wrapper/gradle-wrapper.properties).
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25-tem",
+      "jdkDistro": "tem",
+      "installGradle": true,
+      "gradleVersion": "9.5"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.import.gradle.enabled": true,
+        "files.watcherExclude": {
+          "**/.gradle/**": true,
+          "**/build/**": true
+        },
+        "files.exclude": {
+          "**/.gradle": true,
+          "**/build": true
+        }
+      }
+    }
+  },
+
+  // Reuse your existing WSL2 SSH key + git identity instead of
+  // reconfiguring them inside the (disposable) container every time.
+  // Requires both files to already exist on the WSL2 side -- see README.
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached,readonly",
+    "source=${localEnv:HOME}/.gitconfig,target=/tmp/host-gitconfig,type=bind,consistency=cached,readonly"
+  ],
+
+  // Git identity setup (as above) plus this project's own one-time need:
+  // materializing the Gradle wrapper now that a real `gradle` binary and
+  // network access both exist. `|| true` on the wrapper line so a container
+  // rebuild with no network yet (or an already-wrapped checkout) doesn't
+  // fail the whole postCreateCommand.
+  "postCreateCommand": "apt-get update && apt-get install -y --no-install-recommends openssh-client; if [ -f /tmp/host-gitconfig ]; then cp /tmp/host-gitconfig /root/.gitconfig; fi; git config --global --add safe.directory ${containerWorkspaceFolder}; (cd ${containerWorkspaceFolder} && gradle wrapper --gradle-version 9.5) || true"
+}
