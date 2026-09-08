@@ -27,6 +27,8 @@ subprojects {
         // variants of Gradle configurations only matter when jars need to be
         // remapped between mapping sets, which no longer applies here.
         implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+        implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     }
 
     java {

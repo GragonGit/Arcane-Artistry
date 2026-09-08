@@ -1,5 +1,5 @@
 dependencies {
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Plain project dependency, not a Loom "...Elements" cross-project
     // configuration: no remapping happens between subprojects on an
