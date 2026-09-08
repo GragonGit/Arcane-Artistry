@@ -1,12 +1,13 @@
 package net.arcaneartistry.base.staffs;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import net.minecraft.resource.IdentifiableResourceReloadListener;
-import net.minecraft.resource.JsonDataLoader;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.profiler.Profiler;
+import net.arcaneartistry.base.util.PassthroughJsonCodec;
+import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
+import net.minecraft.resources.FileToIdConverter;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.profiling.ProfilerFiller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,41 +17,54 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Loads {@code data/<namespace>/arcane_artistry/staffs/*.json} on datapack
- * load/reload, exactly like a recipe or loot table (design document sections
- * 6.1 and 7 -- "This gets you /reload support and lets other mods, resource
- * packs, or data packs add/override spells for free"). Definitions are keyed
- * by their own {@code "id"} JSON field, not by file path.
+ * load/reload (design document sections 5 and 7).
+ *
+ * <p>
+ * Unlike {@link net.arcaneartistry.base.spells.SpellDefinitionLoader}, staff
+ * definitions don't register anything with core's gesture engine
+ * themselves -- a staff is only ever a *filter* (design document section 5:
+ * "this module is what turns 'any pattern is castable' into 'only patterns
+ * your staff permits are castable'"), applied when a gesture cast is
+ * actually attempted, not at load time.
+ *
+ * <p>
+ * See {@link net.arcaneartistry.base.spells.SpellDefinitionLoader} for why
+ * this now extends {@code SimpleJsonResourceReloadListener<JsonElement>}
+ * with a pass-through codec instead of the old {@code (Gson, String)}
+ * constructor -- same reasoning applies here.
  */
-public final class StaffDefinitionLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger("arcane_artistry_base/staffs");
-    private static final Map<Identifier, StaffDefinition> DEFINITIONS = new ConcurrentHashMap<>();
+public final class StaffDefinitionLoader extends SimpleJsonResourceReloadListener<JsonElement>
+    implements IdentifiableResourceReloadListener {
+  private static final Logger LOGGER = LoggerFactory.getLogger("arcane_artistry_base/staffs");
+  private static final Map<Identifier, StaffDefinition> DEFINITIONS = new ConcurrentHashMap<>();
 
-    public StaffDefinitionLoader() {
-        super(new Gson(), "arcane_artistry/staffs");
-    }
+  public StaffDefinitionLoader() {
+    super(PassthroughJsonCodec.INSTANCE, FileToIdConverter.json("arcane_artistry/staffs"));
+  }
 
-    public static Optional<StaffDefinition> get(Identifier id) {
-        return Optional.ofNullable(DEFINITIONS.get(id));
-    }
+  public static Optional<StaffDefinition> get(Identifier id) {
+    return Optional.ofNullable(DEFINITIONS.get(id));
+  }
 
-    @Override
-    protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
-        Map<Identifier, StaffDefinition> next = new ConcurrentHashMap<>();
-        prepared.forEach((fileId, element) -> {
-            try {
-                StaffDefinition definition = StaffDefinition.fromJson(element.getAsJsonObject());
-                next.put(definition.id(), definition);
-            } catch (RuntimeException e) {
-                LOGGER.error("Skipping malformed staff definition at {}: {}", fileId, e.getMessage());
-            }
-        });
-        DEFINITIONS.clear();
-        DEFINITIONS.putAll(next);
-        LOGGER.info("Loaded {} staff definition(s).", DEFINITIONS.size());
-    }
+  @Override
+  protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
+    Map<Identifier, StaffDefinition> next = new ConcurrentHashMap<>();
+    prepared.forEach((fileId, element) -> {
+      try {
+        StaffDefinition definition = StaffDefinition.fromJson(element.getAsJsonObject());
+        next.put(definition.id(), definition);
+      } catch (RuntimeException e) {
+        LOGGER.error("Skipping malformed staff definition at {}: {}", fileId, e.getMessage());
+      }
+    });
 
-    @Override
-    public Identifier getFabricId() {
-        return Identifier.of("arcane_artistry_base", "staffs");
-    }
+    DEFINITIONS.clear();
+    DEFINITIONS.putAll(next);
+    LOGGER.info("Loaded {} staff definition(s).", DEFINITIONS.size());
+  }
+
+  @Override
+  public Identifier getFabricId() {
+    return Identifier.fromNamespaceAndPath("arcane_artistry_base", "staffs");
+  }
 }

@@ -1,12 +1,14 @@
 package net.arcaneartistry.core.network;
 
 import net.arcaneartistry.core.api.GestureDirection;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.InteractionHand;
+
+import io.netty.buffer.ByteBuf;
 
 import java.util.List;
 
@@ -16,26 +18,31 @@ import java.util.List;
  * {@code GesturePatternRegistry} rather than trusting a client-supplied
  * result -- see {@link net.arcaneartistry.core.api.GestureCastCallback}.
  *
- * <p>Built against the {@code CustomPayload}/{@code PacketCodec} networking
- * API (the 1.20.5-era packet rework). This corner of the Fabric API has
- * moved a couple of times before; if your Fabric API version's codec
- * combinator names differ slightly, this is the first file to check.
+ * <p>
+ * Built against the {@code CustomPacketPayload}/{@code StreamCodec}
+ * networking API introduced in the 1.20.5-era packet rework, using Mojang's
+ * official names (this codebase targets 26.2, which ships unobfuscated).
  */
-public record GestureCastC2SPayload(Hand hand, List<GestureDirection> gesture) implements CustomPayload {
-    public static final Id<GestureCastC2SPayload> ID =
-            new Id<>(Identifier.of("arcane_artistry_core", "gesture_cast"));
+public record GestureCastC2SPayload(InteractionHand hand, List<GestureDirection> gesture)
+    implements CustomPacketPayload {
 
-    private static final PacketCodec<RegistryByteBuf, Hand> HAND_CODEC =
-            PacketCodecs.indexed(id -> Hand.values()[id], Hand::ordinal);
+  public static final CustomPacketPayload.Type<GestureCastC2SPayload> TYPE =
+      new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath("arcane_artistry_core", "gesture_cast"));
 
-    public static final PacketCodec<RegistryByteBuf, GestureCastC2SPayload> CODEC = PacketCodec.tuple(
-            HAND_CODEC, GestureCastC2SPayload::hand,
-            GestureDirection.<RegistryByteBuf>packetCodec().collect(PacketCodecs.toList()), GestureCastC2SPayload::gesture,
-            GestureCastC2SPayload::new
-    );
+  private static final StreamCodec<ByteBuf, InteractionHand> HAND_CODEC = ByteBufCodecs.BYTE.map(
+      b -> InteractionHand.values()[b], hand -> (byte) hand.ordinal());
 
-    @Override
-    public Id<? extends CustomPayload> getId() {
-        return ID;
-    }
+  // NOTE: .apply(ByteBufCodecs.list()) mirrors the CodecOperation-based
+  // list-collection helper Mojang's StreamCodec exposes; if this specific
+  // line doesn't compile against your exact Fabric API build, check
+  // ByteBufCodecs' generated sources for the current list-collector name.
+  public static final StreamCodec<RegistryFriendlyByteBuf, GestureCastC2SPayload> CODEC = StreamCodec.composite(
+      HAND_CODEC, GestureCastC2SPayload::hand,
+      GestureDirection.packetCodec().apply(ByteBufCodecs.list()), GestureCastC2SPayload::gesture,
+      GestureCastC2SPayload::new);
+
+  @Override
+  public Type<? extends CustomPacketPayload> type() {
+    return TYPE;
+  }
 }

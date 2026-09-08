@@ -1,7 +1,7 @@
 package net.arcaneartistry.base.staffs;
 
 import com.google.gson.JsonObject;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,7 +10,8 @@ import java.util.stream.StreamSupport;
 /**
  * Parsed form of a staff definition JSON file (design document section 5).
  *
- * <p>Identity is the JSON's own {@code "id"} field (e.g.
+ * <p>
+ * Identity is the JSON's own {@code "id"} field (e.g.
  * {@code arcane_artistry_staffs:fire_wand}), not the file's path -- the
  * design document's own examples give staffs and spells ids in namespaces
  * distinct from the mod that ships them ({@code arcane_artistry_staffs},
@@ -24,22 +25,25 @@ import java.util.stream.StreamSupport;
  */
 public record StaffDefinition(Identifier id, Set<Identifier> allowedTags, int cooldownTicks) {
 
-    public static StaffDefinition fromJson(JsonObject json) {
-        Identifier id = Identifier.of(json.get("id").getAsString());
+  public static StaffDefinition fromJson(JsonObject json) {
+    Identifier id = Identifier.parse(json.get("id").getAsString());
 
-        Set<Identifier> allowedTags = json.has("allowed_tags")
-                ? StreamSupport.stream(json.getAsJsonArray("allowed_tags").spliterator(), false)
-                    .map(element -> Identifier.of(element.getAsString()))
-                    .collect(Collectors.toUnmodifiableSet())
-                : Set.of();
+    Set<Identifier> allowedTags = json.has("allowed_tags")
+        ? StreamSupport.stream(json.getAsJsonArray("allowed_tags").spliterator(), false)
+            .map(element -> Identifier.parse(element.getAsString()))
+            .collect(Collectors.toUnmodifiableSet())
+        : Set.of();
 
-        int cooldownTicks = json.has("cooldown_ticks") ? json.get("cooldown_ticks").getAsInt() : 0;
+    int cooldownTicks = json.has("cooldown_ticks") ? json.get("cooldown_ticks").getAsInt() : 0;
 
-        return new StaffDefinition(id, allowedTags, cooldownTicks);
-    }
+    return new StaffDefinition(id, allowedTags, cooldownTicks);
+  }
 
-    /** "a spell can only be cast by a staff if the spell's own tag set intersects with the staff's allowed_tags" (section 5). */
-    public boolean allows(Set<Identifier> spellTags) {
-        return !java.util.Collections.disjoint(allowedTags, spellTags);
-    }
+  /**
+   * "a spell can only be cast by a staff if the spell's own tag set intersects
+   * with the staff's allowed_tags" (section 5).
+   */
+  public boolean allows(Set<Identifier> spellTags) {
+    return !java.util.Collections.disjoint(allowedTags, spellTags);
+  }
 }

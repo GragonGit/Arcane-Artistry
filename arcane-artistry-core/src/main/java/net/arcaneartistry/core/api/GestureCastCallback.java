@@ -2,12 +2,12 @@ package net.arcaneartistry.core.api;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
 
@@ -20,7 +20,8 @@ import java.util.Optional;
  * {@code net.arcaneartistry.core.FizzleDefaults} listens for exactly that to
  * play the default fizzle sound (design document open question 4).
  *
- * <p><b>Why this fires server-side:</b> gesture *drawing* is unavoidably
+ * <p>
+ * <b>Why this fires server-side:</b> gesture *drawing* is unavoidably
  * client-only (it's built from raw mouse movement), but whatever a matched
  * identifier ends up meaning -- damage, spawning an entity, granting a
  * potion effect -- needs server authority to actually happen. Rather than
@@ -33,16 +34,16 @@ import java.util.Optional;
  * should listen to.
  */
 public interface GestureCastCallback {
-    Event<GestureCastCallback> EVENT = EventFactory.createArrayBacked(GestureCastCallback.class,
-            listeners -> (player, stack, hand, matchedId, context) -> {
-                for (GestureCastCallback listener : listeners) {
-                    listener.onGestureCast(player, stack, hand, matchedId, context);
-                }
-            });
+  Event<GestureCastCallback> EVENT = EventFactory.createArrayBacked(GestureCastCallback.class,
+      listeners -> (player, stack, hand, matchedId, context) -> {
+        for (GestureCastCallback listener : listeners) {
+          listener.onGestureCast(player, stack, hand, matchedId, context);
+        }
+      });
 
-    void onGestureCast(ServerPlayerEntity player, ItemStack stack, Hand hand,
-                        Optional<Identifier> matchedId, GestureCastContext context);
+  void onGestureCast(ServerPlayer player, ItemStack stack, InteractionHand hand,
+      Optional<Identifier> matchedId, GestureCastContext context);
 
-    record GestureCastContext(ServerWorld world, Vec3d position) {
-    }
+  record GestureCastContext(ServerLevel world, Vec3 position) {
+  }
 }

@@ -2,11 +2,11 @@ package net.arcaneartistry.base.spells.effects;
 
 import com.google.gson.JsonObject;
 import net.arcaneartistry.base.spells.SpellEffect;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * Params: {@code action} (only {@code "ignite"} is implemented for v1),
@@ -17,30 +17,30 @@ import net.minecraft.world.RaycastContext;
  * with more cases as needed.
  */
 public final class BlockInteractionSpellEffect implements SpellEffect {
-    @Override
-    public void execute(SpellEffectContext context, JsonObject params) {
-        String action = params.has("action") ? params.get("action").getAsString() : "ignite";
-        double range = params.has("range") ? params.get("range").getAsDouble() : 5.0;
+  @Override
+  public void execute(SpellEffectContext context, JsonObject params) {
+    String action = params.has("action") ? params.get("action").getAsString() : "ignite";
+    double range = params.has("range") ? params.get("range").getAsDouble() : 5.0;
 
-        var caster = context.caster();
-        Vec3d start = caster.getEyePos();
-        Vec3d end = start.add(caster.getRotationVec(1.0f).multiply(range));
+    var caster = context.caster();
+    Vec3 start = caster.getEyePosition();
+    Vec3 end = start.add(caster.getViewVector(1.0f).scale(range));
 
-        HitResult hit = context.world().raycast(new RaycastContext(
-                start, end,
-                RaycastContext.ShapeType.OUTLINE,
-                RaycastContext.FluidHandling.NONE,
-                caster));
+    HitResult hit = context.world().clip(new ClipContext(
+        start, end,
+        ClipContext.Block.OUTLINE,
+        ClipContext.Fluid.NONE,
+        caster));
 
-        if (hit.getType() != HitResult.Type.BLOCK || !(hit instanceof BlockHitResult blockHit)) {
-            return;
-        }
-
-        if ("ignite".equals(action)) {
-            var firePos = blockHit.getBlockPos().offset(blockHit.getSide());
-            if (context.world().isAir(firePos)) {
-                context.world().setBlockState(firePos, Blocks.FIRE.getDefaultState());
-            }
-        }
+    if (hit.getType() != HitResult.Type.BLOCK || !(hit instanceof BlockHitResult blockHit)) {
+      return;
     }
+
+    if ("ignite".equals(action)) {
+      var firePos = blockHit.getBlockPos().relative(blockHit.getDirection());
+      if (context.world().isEmptyBlock(firePos)) {
+        context.world().setBlockAndUpdate(firePos, Blocks.FIRE.defaultBlockState());
+      }
+    }
+  }
 }

@@ -1,9 +1,9 @@
 package net.arcaneartistry.base.spells;
 
 import com.google.gson.JsonObject;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * A resolved handler for one {@code effect.type} value (design document
@@ -14,8 +14,8 @@ import net.minecraft.server.world.ServerWorld;
  * type is free to define its own parameter shape.
  */
 public interface SpellEffect {
-    void execute(SpellEffectContext context, JsonObject params);
+  void execute(SpellEffectContext context, JsonObject params);
 
-    record SpellEffectContext(ServerWorld world, ServerPlayerEntity caster, ItemStack staffStack, SpellDefinition spell) {
-    }
+  record SpellEffectContext(ServerLevel world, ServerPlayer caster, ItemStack staffStack, SpellDefinition spell) {
+  }
 }

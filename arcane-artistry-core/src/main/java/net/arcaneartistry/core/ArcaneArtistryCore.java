@@ -6,9 +6,9 @@ import net.arcaneartistry.core.network.GestureCastC2SPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,28 +20,28 @@ import java.util.Optional;
  * turns on the default fizzle feedback.
  */
 public final class ArcaneArtistryCore implements ModInitializer {
-    public static final String MOD_ID = "arcane_artistry_core";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+  public static final String MOD_ID = "arcane_artistry_core";
+  public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    @Override
-    public void onInitialize() {
-        PayloadTypeRegistry.playC2S().register(GestureCastC2SPayload.ID, GestureCastC2SPayload.CODEC);
+  @Override
+  public void onInitialize() {
+    PayloadTypeRegistry.serverboundPlay().register(GestureCastC2SPayload.TYPE, GestureCastC2SPayload.CODEC);
 
-        ServerPlayNetworking.registerGlobalReceiver(GestureCastC2SPayload.ID, (payload, context) ->
-                context.server().execute(() -> handleGestureCast(context.player(), payload)));
+    ServerPlayNetworking.registerGlobalReceiver(GestureCastC2SPayload.TYPE,
+        (payload, context) -> context.server().execute(() -> handleGestureCast(context.player(), payload)));
 
-        FizzleDefaults.register();
+    FizzleDefaults.register();
 
-        LOGGER.info("Arcane Artistry core gesture engine ready.");
-    }
+    LOGGER.info("Arcane Artistry core gesture engine ready.");
+  }
 
-    private void handleGestureCast(ServerPlayerEntity player, GestureCastC2SPayload payload) {
-        var stack = player.getStackInHand(payload.hand());
-        Optional<Identifier> matched = GesturePatternRegistry.match(payload.gesture());
+  private void handleGestureCast(ServerPlayer player, GestureCastC2SPayload payload) {
+    var stack = player.getItemInHand(payload.hand());
+    Optional<Identifier> matched = GesturePatternRegistry.match(payload.gesture());
 
-        ServerWorld world = player.getServerWorld();
-        var context = new GestureCastCallback.GestureCastContext(world, player.getPos());
+    ServerLevel world = player.level();
+    var context = new GestureCastCallback.GestureCastContext(world, player.position());
 
-        GestureCastCallback.EVENT.invoker().onGestureCast(player, stack, payload.hand(), matched, context);
-    }
+    GestureCastCallback.EVENT.invoker().onGestureCast(player, stack, payload.hand(), matched, context);
+  }
 }
