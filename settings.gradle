@@ -9,7 +9,7 @@ pluginManagement {
 
 rootProject.name = 'arcane-artistry'
 
+include 'arcane-artistry-shell'
 include 'arcane-artistry-core'
 include 'arcane-artistry-base'
-include 'arcane-artistry'
 // include 'arcane-artistry-alchemy'

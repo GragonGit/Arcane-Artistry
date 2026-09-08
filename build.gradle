@@ -49,4 +49,9 @@ subprojects {
             expand version: project.version
         }
     }
+
+    tasks.register('run') {
+        group = '.run'
+        dependsOn ':arcane-artistry-shell:runClient'
+    }
 }

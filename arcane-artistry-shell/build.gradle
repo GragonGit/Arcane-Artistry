@@ -9,6 +9,9 @@
 // nothing to remap, so the plain `jar` task is the one that matters --
 // see https://docs.fabricmc.net/develop/porting/ point 9.
 dependencies {
+    implementation project(':arcane-artistry-core')
     include project(':arcane-artistry-core')
+
+    implementation project(':arcane-artistry-base')
     include project(':arcane-artistry-base')
 }
