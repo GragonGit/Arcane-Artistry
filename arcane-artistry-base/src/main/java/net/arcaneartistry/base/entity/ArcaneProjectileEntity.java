@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -32,38 +33,36 @@ import net.minecraft.world.phys.HitResult;
  * damage isn't externally configurable).
  */
 public final class ArcaneProjectileEntity extends ThrowableItemProjectile {
-  private static final EntityDataAccessor<Float> DAMAGE = SynchedEntityData.defineId(ArcaneProjectileEntity.class,
-      EntityDataSerializers.FLOAT);
-  private static final EntityDataAccessor<String> PROJECTILE_KEY = SynchedEntityData
-      .defineId(ArcaneProjectileEntity.class, EntityDataSerializers.STRING);
+  private static final EntityDataAccessor<Float> DAMAGE =
+      SynchedEntityData.defineId(ArcaneProjectileEntity.class, EntityDataSerializers.FLOAT);
 
-  /**
-   * Required by {@code EntityType.Builder} for spawning from the entity type / on
-   * the client.
-   */
   public ArcaneProjectileEntity(EntityType<? extends ThrowableItemProjectile> type, Level level) {
     super(type, level);
   }
 
   public ArcaneProjectileEntity(Level level, LivingEntity owner, String projectileKey, double damage) {
-    super(ModEntities.ARCANE_PROJECTILE, level); // TODO Check because constructor originally also had owner
+    super(ModEntities.ARCANE_PROJECTILE, level);
+    this.setOwner(owner);
     this.getEntityData().set(DAMAGE, (float) damage);
-    this.getEntityData().set(PROJECTILE_KEY, projectileKey);
+    this.setItem(new ItemStack(resolveItem(projectileKey)));
+  }
+
+  private static Item resolveItem(String projectileKey) {
+    return switch (projectileKey) {
+      case "fireball" -> Items.FIRE_CHARGE;
+      default -> Items.BLAZE_POWDER;
+    };
   }
 
   @Override
   protected void defineSynchedData(SynchedEntityData.Builder builder) {
-    super.defineSynchedData(builder);
+    super.defineSynchedData(builder); // safe now: getDefaultItem() no longer touches entityData
     builder.define(DAMAGE, 4.0f);
-    builder.define(PROJECTILE_KEY, "fireball");
   }
 
   @Override
   protected Item getDefaultItem() {
-    return switch (this.getEntityData().get(PROJECTILE_KEY)) {
-      case "fireball" -> Items.FIRE_CHARGE;
-      default -> Items.BLAZE_POWDER;
-    };
+    return Items.FIRE_CHARGE; // just a construction-time placeholder, overwritten by setItem() above
   }
 
   @Override
