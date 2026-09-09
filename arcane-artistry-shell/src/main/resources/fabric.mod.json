@@ -3,12 +3,12 @@
   "id": "arcane_artistry",
   "version": "${version}",
   "name": "Arcane Artistry",
-  "description": "Staff-based gesture spellcasting. This is the shell/deploy module -- the actual gesture engine and spell content live in arcane_artistry_core and arcane_artistry_base, jar-in-jar'd inside this one file so you only ever have to install a single download (design document section 3).",
+  "description": "Staff-based gesture spellcasting. This is the shell module. The actual gesture engine and content live in other subprojects.",
   "authors": [
-    "You"
+    "Gragon, TanConan, Calamaris"
   ],
   "contact": {},
-  "license": "ARR",
+  "license": "CC BY-NC-SA 4.0",
   "environment": "*",
   "depends": {
     "fabricloader": ">=0.19.0",
