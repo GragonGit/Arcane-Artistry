@@ -1,6 +1,4 @@
 plugins {
-    // Renamed from id "fabric-loom" as of the Minecraft 26.1 port -- see
-    // https://docs.fabricmc.net/develop/porting/
     id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
 }
 
@@ -17,17 +15,7 @@ subprojects {
 
     dependencies {
         minecraft "com.mojang:minecraft:${project.minecraft_version}"
-
-        // No `mappings` line: Minecraft 26.2 ships unobfuscated, so there is
-        // no official<->intermediary<->named bridge for Loom to build here.
-        // (Porting note: on an obfuscated MC version you'd add e.g.
-        // `mappings loom.officialMojangMappings()` back in.)
-
-        // Plain `implementation`, not `modImplementation`: the mod-remapping
-        // variants of Gradle configurations only matter when jars need to be
-        // remapped between mapping sets, which no longer applies here.
         implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
         implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     }
 
@@ -41,8 +29,6 @@ subprojects {
         it.options.release = project.java_version as Integer
     }
 
-    // Fill in fabric.mod.json's ${version} placeholder from the Gradle
-    // project version at build time.
     processResources {
         inputs.property 'version', project.version
         filesMatching('fabric.mod.json') {
