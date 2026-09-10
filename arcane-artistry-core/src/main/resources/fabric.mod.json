@@ -3,12 +3,12 @@
   "id": "arcane_artistry_core",
   "version": "${version}",
   "name": "Arcane Artistry: Core",
-  "description": "Gesture drawing and pattern-matching engine for Arcane Artistry. Knows nothing about spells, staffs, or elements -- that vocabulary belongs to arcane_artistry_base (or any other module built on top of this one).",
+  "description": "Gesture drawing and pattern-matching engine for Arcane Artistry.",
   "authors": [
-    "You"
+    "Gragon, TanConan, Calamaris"
   ],
   "contact": {},
-  "license": "ARR",
+  "license": "CC BY-NC-SA 4.0",
   "environment": "*",
   "entrypoints": {
     "main": [

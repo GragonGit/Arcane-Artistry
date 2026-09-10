@@ -16,12 +16,7 @@ import java.util.List;
  * Client -> server: "I finished drawing this gesture with this hand."
  * The server re-derives the match itself against its own authoritative
  * {@code GesturePatternRegistry} rather than trusting a client-supplied
- * result -- see {@link net.arcaneartistry.core.api.GestureCastCallback}.
- *
- * <p>
- * Built against the {@code CustomPacketPayload}/{@code StreamCodec}
- * networking API introduced in the 1.20.5-era packet rework, using Mojang's
- * official names (this codebase targets 26.2, which ships unobfuscated).
+ * result.
  */
 public record GestureCastC2SPayload(InteractionHand hand, List<GestureDirection> gesture)
     implements CustomPacketPayload {
@@ -32,10 +27,6 @@ public record GestureCastC2SPayload(InteractionHand hand, List<GestureDirection>
   private static final StreamCodec<ByteBuf, InteractionHand> HAND_CODEC = ByteBufCodecs.BYTE.map(
       b -> InteractionHand.values()[b], hand -> (byte) hand.ordinal());
 
-  // NOTE: .apply(ByteBufCodecs.list()) mirrors the CodecOperation-based
-  // list-collection helper Mojang's StreamCodec exposes; if this specific
-  // line doesn't compile against your exact Fabric API build, check
-  // ByteBufCodecs' generated sources for the current list-collector name.
   public static final StreamCodec<RegistryFriendlyByteBuf, GestureCastC2SPayload> CODEC = StreamCodec.composite(
       HAND_CODEC, GestureCastC2SPayload::hand,
       GestureDirection.packetCodec().apply(ByteBufCodecs.list()), GestureCastC2SPayload::gesture,

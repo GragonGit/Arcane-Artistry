@@ -14,7 +14,6 @@ import net.arcaneartistry.base.spells.effects.SelfBuffSpellEffect;
 import net.arcaneartistry.base.staffs.StaffDefinition;
 import net.arcaneartistry.base.staffs.StaffDefinitionLoader;
 import net.arcaneartistry.base.staffs.StaffItem;
-import net.arcaneartistry.core.FizzleDefaults;
 import net.arcaneartistry.core.api.GestureCastCallback;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
@@ -91,13 +90,9 @@ public final class ArcaneArtistryBase implements ModInitializer {
    * cast. See the README's "Implementation decisions" section for the
    * full reasoning on ordering/authority here.
    */
-  private void onGestureCast(ServerPlayer player, ItemStack stack, InteractionHand hand,
-      Optional<Identifier> matchedId, GestureCastCallback.GestureCastContext context) {
-    if (matchedId.isEmpty() || !(stack.getItem() instanceof StaffItem staffItem)) {
-      // No match at all (core's FizzleDefaults already handles that
-      // case), or drawn with something that isn't one of our staffs --
-      // most likely a future module's own GestureCastable item. Either
-      // way, not base's concern.
+  private void onGestureCast(GestureCastCallback.GestureCastContext c) {
+    if (matchedId.isEmpty() || !(c.stack().getItem() instanceof StaffItem staffItem)) {
+      // TODO - Fizzle
       return;
     }
 
@@ -111,19 +106,16 @@ public final class ArcaneArtistryBase implements ModInitializer {
 
     StaffDefinition staffDefinition = StaffDefinitionLoader.get(staffItem.getDefinitionId()).orElse(null);
     boolean allowedByStaff = staffDefinition != null && staffDefinition.allows(spell.tags());
-    boolean offCooldown = SpellCooldowns.isReady(player, spell.id())
-        && !player.getCooldowns().isOnCooldown(stack);
+    boolean offCooldown = SpellCooldowns.isReady(c.player(), spell.id())
+        && !c.player().getCooldowns().isOnCooldown(c.stack());
 
     if (!allowedByStaff || !offCooldown) {
-      // The gesture matched *a* spell, just not one this staff/cooldown
-      // state allows right now -- from the player's point of view this
-      // should look and sound the same as any other failed cast.
-      FizzleDefaults.playAt(context.world(), context.position());
+      // TODO - Fizzle
       return;
     }
 
     SpellEffectRegistry.get(spell.effectType()).ifPresentOrElse(
-        effect -> castSpell(effect, player, stack, spell, staffDefinition),
+        effect -> castSpell(effect, c.player(), c.stack(), spell, staffDefinition),
         () -> LOGGER.warn("Spell {} references unknown effect type {}", spell.id(), spell.effectType()));
   }
 
