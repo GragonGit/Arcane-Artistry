@@ -1,41 +1,38 @@
 {
-	"schemaVersion": 1,
-	"id": "arcane-artistry",
-	"version": "${version}",
-	"name": "Arcane Artistry",
-	"description": "Arcane Artistry is a Minecraft magic mod that aims at turning the act of casting spells into a more interactive experience by requiring the player to physically move their mouse around.",
-	"authors": [
-		"Gragon, TanConan, Calamaris"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC BY-NC-SA 4.0",
-	"icon": "assets/arcane-artistry/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"gragongit.arcaneartistry.ArcaneArtistry"
-		],
-		"client": [
-			"gragongit.arcaneartistry.client.ArcaneArtistryClient"
-		],
-		"fabric-datagen": [
-			"gragongit.arcaneartistry.client.ArcaneArtistryDataGenerator"
-		]
-	},
-	"mixins": [
-		"arcane-artistry.mixins.json",
-		{
-			"config": "arcane-artistry.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.19.5",
-		"minecraft": "~26.2",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "arcane-artistry",
+  "version": "${version}",
+  "name": "Arcane Artistry",
+  "description": "Arcane Artistry is a Minecraft magic mod that aims at turning the act of casting spells into a more interactive experience by requiring the player to physically move their mouse around.",
+  "authors": ["Gragon, TanConan, Calamaris"],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC BY-NC-SA 4.0",
+  "icon": "assets/arcane-artistry/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gragongit.arcaneartistry.common.ArcaneArtistry",
+      "gragongit.arcaneartistry.elements.common.ArcaneArtistryElements"
+    ],
+    "client": ["gragongit.arcaneartistry.client.ArcaneArtistryClient"],
+    "fabric-datagen": [
+      "gragongit.arcaneartistry.client.ArcaneArtistryDataGenerator"
+    ]
+  },
+  "mixins": [
+    "arcane-artistry.mixins.json",
+    {
+      "config": "arcane-artistry.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }
