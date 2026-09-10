@@ -1,16 +1,11 @@
 # Changelog
 The Arcane Artistry changelog uses a versioning system where:
-- `X` is for new expansions
-- `Y` is for major changes within expansions
+- `X` is for new modules or reworks
+- `Y` is for major changes within modules
 - `Z` is for bug fixes and minor changes
 
-## 0.0.0
-- Arcane Artistry Setup (We're going to pretend that the previous version never existed)
-
-### Structure
-- Shell – Wrapper for all subprojects
-- Core – Framework for staff functionality
-- Base – Basic staffs and spells for testing (Future subprojects are planned to implement base's features and make it redundant)
+## 1.0.0 Release
+- Arcane Artistry is released!
 
 ---
 
