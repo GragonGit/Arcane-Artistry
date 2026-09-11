@@ -9,7 +9,7 @@ import net.minecraft.resources.Identifier;
 public class ArcaneArtistryElements implements ModInitializer {
   public static final String MOD_ID = "arcane-artistry-elements";
 
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = LoggerFactory.getLogger("Arcane Artistry Elements");
 
 	@Override
 	public void onInitialize() {
