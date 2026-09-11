@@ -35,7 +35,7 @@ public class StaffReloadListener implements ResourceManagerReloadListener {
             .ifPresent(item -> {
               Identifier itemId = BuiltInRegistries.ITEM.getKey(item);
               loaded.put(item, new StaffDefinition(itemId));
-              ArcaneArtistry.LOGGER.info("Registered '{}' as a magic wand (from {})", itemId, fileId);
+              ArcaneArtistry.LOGGER.info("Registered '{}' as a magic staff (from {})", itemId, fileId);
             });
       } catch (Exception e) {
         ArcaneArtistry.LOGGER.error("Failed to parse staff definition {}", fileId, e);
