@@ -42,7 +42,7 @@ public class StaffReloadListener implements ResourceManagerReloadListener {
       }
 
       StaffManager.load(loaded);
-      ArcaneArtistry.LOGGER.info("Loaded {} staff definitions", loaded.size());
+      ArcaneArtistry.LOGGER.info("Loaded {} staff definition(s)", loaded.size());
     }
   }
 }
