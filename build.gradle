@@ -87,3 +87,13 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+
+tasks.register('cleanRunClient') {
+    group = 'fabric'
+    description = 'Cleans build artifacts and launches the Minecraft client.'
+    dependsOn tasks.clean, tasks.runClient
+}
+
+tasks.named('runClient') {
+    mustRunAfter tasks.clean
+}
