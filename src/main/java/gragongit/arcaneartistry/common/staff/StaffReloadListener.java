@@ -30,7 +30,8 @@ public class StaffReloadListener implements ResourceManagerReloadListener {
 
       try (Reader reader = new InputStreamReader(entry.getValue().open())) {
         JsonElement json = JsonParser.parseReader(reader);
-        CODEC.parse(JsonOps.INSTANCE, json)
+        CODEC
+            .parse(JsonOps.INSTANCE, json)
             .resultOrPartial(err -> ArcaneArtistry.LOGGER.warn("Skipping {}: {}", fileId, err))
             .ifPresent(item -> {
               Identifier itemId = BuiltInRegistries.ITEM.getKey(item);

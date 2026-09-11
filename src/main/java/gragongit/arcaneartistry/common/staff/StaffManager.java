@@ -8,8 +8,7 @@ import net.minecraft.world.item.Item;
 public final class StaffManager {
   private static Map<Item, StaffDefinition> STAFFS = Map.of();
 
-  private StaffManager() {
-  }
+  private StaffManager() {}
 
   public static void load(Map<Item, StaffDefinition> staffs) {
     STAFFS = Map.copyOf(staffs);

@@ -9,7 +9,6 @@ import net.minecraft.server.MinecraftServer;
 
 @Mixin(MinecraftServer.class)
 public class ExampleMixin {
-	@Inject(at = @At("HEAD"), method = "loadLevel")
-	private void init(CallbackInfo info) {
-	}
+  @Inject(at = @At("HEAD"), method = "loadLevel")
+  private void init(CallbackInfo info) {}
 }

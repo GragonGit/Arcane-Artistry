@@ -2,7 +2,9 @@
   "required": true,
   "package": "gragongit.arcaneartistry.common.mixin",
   "compatibilityLevel": "JAVA_25",
-  "mixins": ["ExampleMixin"],
+  "mixins": [
+    "ExampleMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

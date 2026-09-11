@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "Arcane Artistry",
   "description": "Arcane Artistry is a Minecraft magic mod that aims at turning the act of casting spells into a more interactive experience by requiring the player to physically move their mouse around.",
-  "authors": ["Gragon, TanConan, Calamaris"],
+  "authors": [
+    "Gragon, TanConan, Calamaris"
+  ],
   "contact": {
     "sources": "https://github.com/GragonGit/Arcane-Artistry"
   },
@@ -16,7 +18,9 @@
       "gragongit.arcaneartistry.common.ArcaneArtistry",
       "gragongit.arcaneartistry.elements.common.ArcaneArtistryElements"
     ],
-    "client": ["gragongit.arcaneartistry.client.ArcaneArtistryClient"],
+    "client": [
+      "gragongit.arcaneartistry.client.ArcaneArtistryClient"
+    ],
     "fabric-datagen": [
       "gragongit.arcaneartistry.client.ArcaneArtistryDataGenerator"
     ]

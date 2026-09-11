@@ -9,14 +9,14 @@ import net.minecraft.resources.Identifier;
 public class ArcaneArtistryElements implements ModInitializer {
   public static final String MOD_ID = "arcane-artistry-elements";
 
-	public static final Logger LOGGER = LoggerFactory.getLogger("Arcane Artistry Elements");
+  public static final Logger LOGGER = LoggerFactory.getLogger("Arcane Artistry Elements");
 
-	@Override
-	public void onInitialize() {
-		LOGGER.info("Arcane Artistry Elements!");
-	}
+  @Override
+  public void onInitialize() {
+    LOGGER.info("Arcane Artistry Elements!");
+  }
 
-	public static Identifier id(String path) {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-	}
+  public static Identifier id(String path) {
+    return Identifier.fromNamespaceAndPath(MOD_ID, path);
+  }
 }

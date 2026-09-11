@@ -2,7 +2,9 @@
   "required": true,
   "package": "gragongit.arcaneartistry.client.mixin",
   "compatibilityLevel": "JAVA_25",
-  "client": ["ExampleClientMixin"],
+  "client": [
+    "ExampleClientMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

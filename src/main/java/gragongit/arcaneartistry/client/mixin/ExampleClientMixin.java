@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 
 @Mixin(Minecraft.class)
 public class ExampleClientMixin {
-	@Inject(at = @At("HEAD"), method = "run")
-	private void init(CallbackInfo info) {
-	}
+  @Inject(at = @At("HEAD"), method = "run")
+  private void init(CallbackInfo info) {}
 }
