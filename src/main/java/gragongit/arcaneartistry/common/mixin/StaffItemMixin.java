@@ -23,8 +23,12 @@ public abstract class StaffItemMixin {
   @Inject(method = "use", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffStart(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
     ItemStack stack = player.getItemInHand(hand);
-    if (!RegistryUtils.isStaff(level, stack.getItem()))
+    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+      if (!level.isClientSide()) {
+        player.sendSystemMessage(Component.literal("Is no Staff :("));
+      }
       return;
+    }
 
     if (!level.isClientSide()) {
       player.sendSystemMessage(Component.literal("[Staff] start"));
@@ -55,7 +59,8 @@ public abstract class StaffItemMixin {
   }
 
   @Inject(method = "releaseUsing", at = @At("HEAD"), cancellable = true)
-  private void arcaneartistry$staffStop(ItemStack stack, Level level, LivingEntity entity, int timeCharged, CallbackInfoReturnable<Boolean> cir) {
+  private void arcaneartistry$staffStop(ItemStack stack, Level level, LivingEntity entity, int timeCharged,
+      CallbackInfoReturnable<Boolean> cir) {
     if (!level.isClientSide() && entity instanceof Player player && RegistryUtils.isStaff(level, stack.getItem())) {
       player.sendSystemMessage(Component.literal("[Staff] stop"));
     }

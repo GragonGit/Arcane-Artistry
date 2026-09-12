@@ -4,6 +4,11 @@ plugins {
 }
 
 sourceSets {
+	main {
+		resources {
+			srcDirs += ['src/generated/resources']
+		}
+	}
 	elements {
 		java {
 			srcDirs = ['src/elements/java']
@@ -28,6 +33,7 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
+		outputDirectory = file('src/generated/resources')
 	}
 }
 
@@ -89,11 +95,11 @@ publishing {
 }
 
 tasks.register('cleanRunClient') {
-    group = 'fabric'
-    description = 'Cleans build artifacts and launches the Minecraft client.'
-    dependsOn tasks.clean, tasks.runClient
+		group = 'fabric'
+		description = 'Cleans build artifacts and launches the Minecraft client.'
+		dependsOn tasks.clean, tasks.runClient
 }
 
 tasks.named('runClient') {
-    mustRunAfter tasks.clean
+		mustRunAfter tasks.clean
 }
