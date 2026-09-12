@@ -14,7 +14,7 @@ sourceSets {
 	}
 }
 
-sourceSets.elements.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.elements.compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
 
 loom {
 	mods {
