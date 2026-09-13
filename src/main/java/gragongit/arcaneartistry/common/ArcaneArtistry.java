@@ -32,6 +32,6 @@ public class ArcaneArtistry implements ModInitializer {
   }
 
   private void testLog(CastProgressContext castContext) {
-    ArcaneArtistry.LOGGER.info(castContext.castPattern().toString());
+    ArcaneArtistry.LOGGER.info(castContext.castPattern().pattern().toString());
   }
 }
