@@ -1,7 +1,7 @@
 package gragongit.arcaneartistry.datagen;
 
 import gragongit.arcaneartistry.common.registry.ModRegistries;
-import gragongit.arcaneartistry.common.staff.StaffDefinition;
+import gragongit.arcaneartistry.common.staff.Staff;
 import gragongit.arcaneartistry.datagen.staff.StaffProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -21,5 +21,5 @@ public class ArcaneArtistryDataGenerator implements DataGeneratorEntrypoint {
     registryBuilder.add(ModRegistries.STAFF_KEY, ArcaneArtistryDataGenerator::bootstrap);
   }
 
-  private static void bootstrap(BootstrapContext<StaffDefinition> context) {}
+  private static void bootstrap(BootstrapContext<Staff> context) {}
 }
