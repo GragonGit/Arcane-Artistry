@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import gragongit.arcaneartistry.common.api.StaffInteractionEvents;
 import gragongit.arcaneartistry.common.registry.RegistryUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,16 +24,10 @@ public abstract class StaffItemMixin {
   private void arcaneartistry$staffStart(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
     ItemStack stack = player.getItemInHand(hand);
     if (!RegistryUtils.isStaff(level, stack.getItem())) {
-      if (!level.isClientSide()) {
-        player.sendSystemMessage(Component.literal("Is no Staff :("));
-      }
       return;
     }
 
-    if (!level.isClientSide()) {
-      player.sendSystemMessage(Component.literal("[Staff] start"));
-    }
-    player.startUsingItem(hand);
+    StaffInteractionEvents.START.invoker().onStaffInteractionStart(player);
     cir.setReturnValue(InteractionResult.CONSUME);
   }
 
@@ -53,16 +47,24 @@ public abstract class StaffItemMixin {
 
   @Inject(method = "onUseTick", at = @At("HEAD"))
   private void arcaneartistry$staffHold(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration, CallbackInfo ci) {
-    if (!level.isClientSide() && entity instanceof Player player && RegistryUtils.isStaff(level, stack.getItem())) {
-      player.sendSystemMessage(Component.literal("[Staff] hold"));
+    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+      return;
+    }
+
+    if (entity instanceof Player player) {
+      StaffInteractionEvents.HOLD.invoker().onStaffInteractionHold(player, null);
     }
   }
 
   @Inject(method = "releaseUsing", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffStop(ItemStack stack, Level level, LivingEntity entity, int timeCharged,
       CallbackInfoReturnable<Boolean> cir) {
-    if (!level.isClientSide() && entity instanceof Player player && RegistryUtils.isStaff(level, stack.getItem())) {
-      player.sendSystemMessage(Component.literal("[Staff] stop"));
+    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+      return;
+    }
+
+    if (entity instanceof Player player) {
+      StaffInteractionEvents.STOP.invoker().onStaffInteractionStop(player, null);
     }
     cir.setReturnValue(false);
   }
