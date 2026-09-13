@@ -1,7 +1,5 @@
 package gragongit.arcaneartistry.common.api;
 
-import java.util.List;
-import gragongit.arcaneartistry.common.staff.StaffDirection;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.world.entity.player.Player;
@@ -49,6 +47,6 @@ public final class CastProgressEvents {
     }
   });
 
-  public record CastProgressContext(Player player, List<StaffDirection> strokes) {
+  public record CastProgressContext(Player player, CastPattern castPattern) {
   }
 }

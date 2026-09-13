@@ -2,6 +2,7 @@ package gragongit.arcaneartistry.common.staff;
 
 import java.util.ArrayList;
 import java.util.List;
+import gragongit.arcaneartistry.common.api.CastPattern;
 import gragongit.arcaneartistry.common.api.CastProgressEvents;
 import gragongit.arcaneartistry.common.api.CastProgressEvents.CastProgressContext;
 import net.minecraft.util.Mth;
@@ -72,6 +73,6 @@ public final class StaffInteractionHandler {
   }
 
   private CastProgressContext getCastProgressContext(Player player) {
-    return new CastProgressContext(player, List.copyOf(strokes));
+    return new CastProgressContext(player, new CastPattern(List.copyOf(strokes)));
   }
 }
