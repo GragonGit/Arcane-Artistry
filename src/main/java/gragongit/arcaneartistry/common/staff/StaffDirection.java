@@ -1,4 +1,4 @@
-package gragongit.arcaneartistry.common.api;
+package gragongit.arcaneartistry.common.staff;
 
 public enum StaffDirection {
   UP, DOWN, LEFT, RIGHT;

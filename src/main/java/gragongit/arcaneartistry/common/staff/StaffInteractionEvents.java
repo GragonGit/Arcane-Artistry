@@ -1,6 +1,5 @@
-package gragongit.arcaneartistry.common.api;
+package gragongit.arcaneartistry.common.staff;
 
-import java.util.List;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.world.entity.player.Player;
@@ -19,22 +18,22 @@ public final class StaffInteractionEvents {
   });
 
   public interface Hold {
-    void onStaffInteractionHold(Player player, List<StaffDirection> strokesSoFar);
+    void onStaffInteractionHold(Player player);
   }
 
-  public static final Event<Hold> HOLD = EventFactory.createArrayBacked(Hold.class, listeners -> (player, strokesSoFar) -> {
+  public static final Event<Hold> HOLD = EventFactory.createArrayBacked(Hold.class, listeners -> (player) -> {
     for (Hold listener : listeners) {
-      listener.onStaffInteractionHold(player, strokesSoFar);
+      listener.onStaffInteractionHold(player);
     }
   });
 
   public interface Stop {
-    void onStaffInteractionStop(Player player, List<StaffDirection> finalStrokes);
+    void onStaffInteractionStop(Player player);
   }
 
-  public static final Event<Stop> STOP = EventFactory.createArrayBacked(Stop.class, listeners -> (player, finalStroke) -> {
+  public static final Event<Stop> STOP = EventFactory.createArrayBacked(Stop.class, listeners -> (player) -> {
     for (Stop listener : listeners) {
-      listener.onStaffInteractionStop(player, finalStroke);
+      listener.onStaffInteractionStop(player);
     }
   });
 }

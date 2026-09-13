@@ -5,8 +5,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import gragongit.arcaneartistry.common.api.StaffInteractionEvents;
 import gragongit.arcaneartistry.common.registry.RegistryUtils;
+import gragongit.arcaneartistry.common.staff.StaffInteractionEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -52,7 +52,7 @@ public abstract class StaffItemMixin {
     }
 
     if (entity instanceof Player player) {
-      StaffInteractionEvents.HOLD.invoker().onStaffInteractionHold(player, null);
+      StaffInteractionEvents.HOLD.invoker().onStaffInteractionHold(player);
     }
   }
 
@@ -64,7 +64,7 @@ public abstract class StaffItemMixin {
     }
 
     if (entity instanceof Player player) {
-      StaffInteractionEvents.STOP.invoker().onStaffInteractionStop(player, null);
+      StaffInteractionEvents.STOP.invoker().onStaffInteractionStop(player);
     }
     cir.setReturnValue(false);
   }
