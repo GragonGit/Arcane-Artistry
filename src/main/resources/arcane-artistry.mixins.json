@@ -5,7 +5,7 @@
   "mixins": [
     "StaffItemMixin",
     "CastingMouseDeltaMixin",
-    "CastingHandRendererMixin"
+    "CastingHandMovementMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,59 @@
+package gragongit.arcaneartistry.common.api;
+
+import java.util.ArrayList;
+import java.util.List;
+import gragongit.arcaneartistry.common.staff.StaffCastAttachments;
+import gragongit.arcaneartistry.common.staff.StaffDirection;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentTarget;
+
+public final class CastState {
+  private final AttachmentTarget target;
+
+  private CastState(AttachmentTarget target) {
+    this.target = target;
+  }
+
+  public static CastState of(AttachmentTarget target) {
+    return new CastState(target);
+  }
+
+  public boolean isCasting() {
+    return target.getAttachedOrElse(StaffCastAttachments.IS_CASTING, false);
+  }
+
+  public void setCasting(boolean casting) {
+    target.setAttached(StaffCastAttachments.IS_CASTING, casting);
+  }
+
+  public double getAccumulatedYaw() {
+    return target.getAttachedOrElse(StaffCastAttachments.ACCUMULATED_YAW, 0.0);
+  }
+
+  public void setAccumulatedYaw(double yaw) {
+    target.setAttached(StaffCastAttachments.ACCUMULATED_YAW, yaw);
+  }
+
+  public double getAccumulatedPitch() {
+    return target.getAttachedOrElse(StaffCastAttachments.ACCUMULATED_PITCH, 0.0);
+  }
+
+  public void setAccumulatedPitch(double pitch) {
+    target.setAttached(StaffCastAttachments.ACCUMULATED_PITCH, pitch);
+  }
+
+  public List<StaffDirection> getStrokes() {
+    return target.getAttachedOrElse(StaffCastAttachments.STROKES, List.of());
+  }
+
+  public void addStroke(StaffDirection direction) {
+    target.modifyAttached(StaffCastAttachments.STROKES, current -> {
+      List<StaffDirection> updated = new ArrayList<>(current == null ? List.of() : current);
+      updated.add(direction);
+      return List.copyOf(updated);
+    });
+  }
+
+  public void clearStrokes() {
+    target.setAttached(StaffCastAttachments.STROKES, List.of());
+  }
+}

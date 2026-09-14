@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import gragongit.arcaneartistry.common.staff.StaffInteractionHandler;
+import gragongit.arcaneartistry.common.api.CastState;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.util.Mth;
@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 @Mixin(ItemInHandRenderer.class)
-public class CastingHandRendererMixin {
+public class CastingHandMovementMixin {
   @Unique
   private static final double MAX_MOVEMENT_RANGE = 67.0;
   @Unique
@@ -38,13 +38,17 @@ public class CastingHandRendererMixin {
   @Inject(method = "renderItem", at = @At("HEAD"))
   private void arcaneartistry$applyStaffCursorOffset(LivingEntity mob, ItemStack itemStack, ItemDisplayContext type, PoseStack poseStack,
       SubmitNodeCollector submitNodeCollector, int lightCoords, CallbackInfo ci) {
-    StaffInteractionHandler handler = StaffInteractionHandler.getInstance();
-
-    if (handler == null || !handler.isCasting() || !type.firstPerson()) {
+    if (!type.firstPerson() || !(mob instanceof Player player)) {
       return;
     }
 
-    if (!(mob instanceof Player player) || itemStack != player.getItemInHand(handler.getCastingHand())) {
+    CastState state = CastState.of(player);
+    if (!state.isCasting()) {
+      return;
+    }
+
+    InteractionHand castingHand = player.getUsedItemHand();
+    if (itemStack != player.getItemInHand(castingHand)) {
       return;
     }
 
@@ -52,11 +56,11 @@ public class CastingHandRendererMixin {
       return;
     }
 
-    HumanoidArm arm = player.getUsedItemHand() == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
+    HumanoidArm arm = castingHand == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
     int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
 
-    double offsetX = Mth.clamp(handler.getDeltaX() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
-    double offsetY = Mth.clamp(handler.getDeltaY() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
+    double offsetX = Mth.clamp(state.getAccumulatedYaw() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
+    double offsetY = Mth.clamp(state.getAccumulatedPitch() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
     poseStack.translate(STAFF_CENTER_POS_X + offsetX, STAFF_CENTER_POS_Y + -offsetY, STAFF_CENTER_POS_Z);
     poseStack.mulPose(Axis.XP.rotationDegrees(STAFF_ROT_X));
     poseStack.mulPose(Axis.YP.rotationDegrees(invert * STAFF_ROT_Y));

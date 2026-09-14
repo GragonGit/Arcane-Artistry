@@ -6,6 +6,7 @@ import gragongit.arcaneartistry.common.api.CastProgressEvents;
 import gragongit.arcaneartistry.common.api.CastProgressEvents.CastProgressContext;
 import gragongit.arcaneartistry.common.registry.ModDataComponents;
 import gragongit.arcaneartistry.common.registry.ModRegistries;
+import gragongit.arcaneartistry.common.staff.StaffCastAttachments;
 import gragongit.arcaneartistry.common.staff.StaffInteractionHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
@@ -14,14 +15,13 @@ public class ArcaneArtistry implements ModInitializer {
   public static final String MOD_ID = "arcane-artistry";
   public static final Logger LOGGER = LoggerFactory.getLogger("Arcane Artistry");
 
-  private static final StaffInteractionHandler StaffInteractionHandler = new StaffInteractionHandler();
-
   @Override
   public void onInitialize() {
     LOGGER.info("Initializing all Arcane Artistry modules");
 
     ModRegistries.register();
     ModDataComponents.register();
+    StaffCastAttachments.register();
     StaffInteractionHandler.register();
 
     CastProgressEvents.START.register(this::testLog);
