@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "StaffItemMixin",
-    "CastingMouseMixin",
+    "CastingMouseDeltaMixin",
     "CastingHandRendererMixin"
   ],
   "injectors": {
