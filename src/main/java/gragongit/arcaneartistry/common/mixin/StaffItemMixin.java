@@ -5,9 +5,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import gragongit.arcaneartistry.common.registry.RegistryUtils;
+import gragongit.arcaneartistry.common.registry.ModDataComponents;
 import gragongit.arcaneartistry.common.staff.StaffInteractionEvents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +22,7 @@ public abstract class StaffItemMixin {
   @Inject(method = "use", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffStart(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
     ItemStack stack = player.getItemInHand(hand);
-    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+    if (!stack.has(ModDataComponents.STAFF)) {
       return;
     }
 
@@ -33,21 +32,21 @@ public abstract class StaffItemMixin {
 
   @Inject(method = "getUseDuration", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffDuration(ItemStack stack, LivingEntity entity, CallbackInfoReturnable<Integer> cir) {
-    if (RegistryUtils.isStaff(entity.level(), stack.getItem())) {
+    if (stack.has(ModDataComponents.STAFF)) {
       cir.setReturnValue(72000);
     }
   }
 
   @Inject(method = "getUseAnimation", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffAnimation(ItemStack stack, CallbackInfoReturnable<ItemUseAnimation> cir) {
-    if (RegistryUtils.isStaff(Minecraft.getInstance().level, stack.getItem())) {
+    if (stack.has(ModDataComponents.STAFF)) {
       cir.setReturnValue(ItemUseAnimation.SPYGLASS);
     }
   }
 
   @Inject(method = "onUseTick", at = @At("HEAD"))
   private void arcaneartistry$staffHold(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration, CallbackInfo ci) {
-    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+    if (!stack.has(ModDataComponents.STAFF)) {
       return;
     }
 
@@ -59,7 +58,7 @@ public abstract class StaffItemMixin {
   @Inject(method = "releaseUsing", at = @At("HEAD"), cancellable = true)
   private void arcaneartistry$staffStop(ItemStack stack, Level level, LivingEntity entity, int timeCharged,
       CallbackInfoReturnable<Boolean> cir) {
-    if (!RegistryUtils.isStaff(level, stack.getItem())) {
+    if (!stack.has(ModDataComponents.STAFF)) {
       return;
     }
 
