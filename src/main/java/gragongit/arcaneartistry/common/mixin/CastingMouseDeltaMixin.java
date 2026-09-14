@@ -9,7 +9,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionResult;
 
 @Mixin(MouseHandler.class)
-public class CastingMouseMixin {
+public class CastingMouseDeltaMixin {
 
   @Redirect(method = "turnPlayer(D)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;turn(DD)V"))
   private void onPlayerTurn(LocalPlayer player, double deltaX, double deltaY) {
