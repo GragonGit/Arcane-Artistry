@@ -1,0 +1,42 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [reworkV2]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v6
+      - name: validate gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+      - name: setup jdk
+        uses: actions/setup-java@v5
+        with:
+          java-version: "25"
+          distribution: "microsoft"
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: build
+        run: ./gradlew build
+      - name: capture build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: Artifacts
+          path: build/libs/
+  deploy:
+    needs: build
+    runs-on: [self-hosted, minecraft-server]
+    steps:
+      - name: download build artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: Artifacts
+          path: ./out
+      - name: deploy mod & restart server
+        run: |
+          JAR=$(ls ./out/*.jar | grep -v -e sources -e dev | head -n1)
+          cp "$JAR" /root/arcane-artistry-mc/data/mods/arcane-artistry.jar
+          docker restart Arcane-Artistry-MC
