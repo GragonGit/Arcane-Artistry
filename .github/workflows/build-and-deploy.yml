@@ -28,7 +28,7 @@ jobs:
           path: build/libs/
   deploy:
     needs: build
-    runs-on: [self-hosted, minecraft-server]
+    runs-on: [self-hosted]
     steps:
       - name: download build artifacts
         uses: actions/download-artifact@v7
