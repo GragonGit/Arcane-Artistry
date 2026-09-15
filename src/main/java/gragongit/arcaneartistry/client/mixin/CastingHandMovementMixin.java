@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import gragongit.arcaneartistry.common.ArcaneArtistry;
 import gragongit.arcaneartistry.common.api.CastState;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -57,7 +56,6 @@ public class CastingHandMovementMixin {
 
     double offsetX = state.getStaffRenderOffsetYaw();
     double offsetY = state.getStaffRenderOffsetPitch();
-    ArcaneArtistry.LOGGER.info("X: " + Double.toString(offsetX) + " Y: " + Double.toString(-offsetY));
     poseStack.translate(STAFF_CENTER_POS_X + offsetX, STAFF_CENTER_POS_Y + -offsetY, STAFF_CENTER_POS_Z);
     poseStack.mulPose(Axis.XP.rotationDegrees(STAFF_ROT_X));
     poseStack.mulPose(Axis.YP.rotationDegrees(invert * STAFF_ROT_Y));
