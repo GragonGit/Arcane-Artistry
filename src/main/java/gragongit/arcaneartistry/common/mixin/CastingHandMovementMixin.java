@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import gragongit.arcaneartistry.common.ArcaneArtistry;
 import gragongit.arcaneartistry.common.api.CastState;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,15 +21,11 @@ import net.minecraft.world.item.ItemStack;
 @Mixin(ItemInHandRenderer.class)
 public class CastingHandMovementMixin {
   @Unique
-  private static final double MAX_MOVEMENT_RANGE = 67.0;
+  private static final float STAFF_CENTER_POS_X = 0.25F;
   @Unique
-  private static final double MOVEMENT_TRANSLATE_SCALE = 0.0005;
+  private static final float STAFF_CENTER_POS_Y = -0.15F;
   @Unique
-  private static final float STAFF_CENTER_POS_X = 0.36F;
-  @Unique
-  private static final float STAFF_CENTER_POS_Y = -0.52F;
-  @Unique
-  private static final float STAFF_CENTER_POS_Z = -0.72F;
+  private static final float STAFF_CENTER_POS_Z = -0.3F;
   @Unique
   private static final float STAFF_ROT_X = -70.0F;
   @Unique
@@ -59,8 +55,9 @@ public class CastingHandMovementMixin {
     HumanoidArm arm = castingHand == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
     int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
 
-    double offsetX = Mth.clamp(state.getAccumulatedYaw() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
-    double offsetY = Mth.clamp(state.getAccumulatedPitch() * MOVEMENT_TRANSLATE_SCALE, -MAX_MOVEMENT_RANGE, MAX_MOVEMENT_RANGE);
+    double offsetX = state.getStaffRenderOffsetYaw();
+    double offsetY = state.getStaffRenderOffsetPitch();
+    ArcaneArtistry.LOGGER.info("X: " + Double.toString(offsetX) + " Y: " + Double.toString(-offsetY));
     poseStack.translate(STAFF_CENTER_POS_X + offsetX, STAFF_CENTER_POS_Y + -offsetY, STAFF_CENTER_POS_Z);
     poseStack.mulPose(Axis.XP.rotationDegrees(STAFF_ROT_X));
     poseStack.mulPose(Axis.YP.rotationDegrees(invert * STAFF_ROT_Y));

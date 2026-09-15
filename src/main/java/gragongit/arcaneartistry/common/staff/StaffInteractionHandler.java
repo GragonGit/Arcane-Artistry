@@ -6,11 +6,14 @@ import gragongit.arcaneartistry.common.api.CastProgressEvents;
 import gragongit.arcaneartistry.common.api.CastProgressEvents.CastProgressContext;
 import gragongit.arcaneartistry.common.api.CastState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 
 public final class StaffInteractionHandler {
-  private static final double INPUT_THRESHOLD = 500.0;
+  private static final double INPUT_THRESHOLD = 200.0;
+  private static final double MAX_STAFF_RENDER_OFFSET = 0.5;
+  private static final double RENDER_TRANSLATE_SCALE = 0.00075;
 
   public static void register() {
     StaffInteractionEvents.START.register(StaffInteractionHandler::onStaffInteractionStart);
@@ -23,6 +26,8 @@ public final class StaffInteractionHandler {
     CastState state = CastState.of(player);
     state.setAccumulatedYaw(0);
     state.setAccumulatedPitch(0);
+    state.setStaffRenderOffsetYaw(0);
+    state.setStaffRenderOffsetPitch(0);
     state.clearStrokes();
     state.setCasting(true);
 
@@ -88,6 +93,13 @@ public final class StaffInteractionHandler {
 
     state.setAccumulatedYaw(yaw);
     state.setAccumulatedPitch(pitch);
+
+    double offsetYaw =
+        Mth.clamp(state.getStaffRenderOffsetYaw() + deltaX * RENDER_TRANSLATE_SCALE, -MAX_STAFF_RENDER_OFFSET, MAX_STAFF_RENDER_OFFSET);
+    double offsetPitch =
+        Mth.clamp(state.getStaffRenderOffsetPitch() + deltaY * RENDER_TRANSLATE_SCALE, -MAX_STAFF_RENDER_OFFSET, MAX_STAFF_RENDER_OFFSET);
+    state.setStaffRenderOffsetYaw(offsetYaw);
+    state.setStaffRenderOffsetPitch(offsetPitch);
 
     return InteractionResult.CONSUME;
   }

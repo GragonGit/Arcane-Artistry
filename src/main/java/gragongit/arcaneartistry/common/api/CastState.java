@@ -41,6 +41,22 @@ public final class CastState {
     target.setAttached(StaffCastAttachments.ACCUMULATED_PITCH, pitch);
   }
 
+  public double getStaffRenderOffsetYaw() {
+    return target.getAttachedOrElse(StaffCastAttachments.STAFF_RENDER_OFFSET_YAW, 0.0);
+  }
+
+  public void setStaffRenderOffsetYaw(double yaw) {
+    target.setAttached(StaffCastAttachments.STAFF_RENDER_OFFSET_YAW, yaw);
+  }
+
+  public double getStaffRenderOffsetPitch() {
+    return target.getAttachedOrElse(StaffCastAttachments.STAFF_RENDER_OFFSET_PITCH, 0.0);
+  }
+
+  public void setStaffRenderOffsetPitch(double pitch) {
+    target.setAttached(StaffCastAttachments.STAFF_RENDER_OFFSET_PITCH, pitch);
+  }
+
   public List<StaffDirection> getStrokes() {
     return target.getAttachedOrElse(StaffCastAttachments.STROKES, List.of());
   }
