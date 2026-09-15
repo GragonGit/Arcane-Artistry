@@ -3,7 +3,8 @@
   "package": "gragongit.arcaneartistry.client.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "ExampleClientMixin"
+    "CastingMouseDeltaMixin",
+    "CastingHandMovementMixin"
   ],
   "injectors": {
     "defaultRequire": 1
